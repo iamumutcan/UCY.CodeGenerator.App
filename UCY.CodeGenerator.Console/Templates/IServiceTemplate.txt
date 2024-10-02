@@ -1,0 +1,10 @@
+using {{ProjectName}}{{CoreLayer}}.DTOs;
+using {{ProjectName}}{{CoreLayer}}.Model;
+
+namespace {{ProjectName}}{{CoreLayer}}.Services
+{
+    public interface I{{ModelName}}Service : IService<{{ModelName}}>
+    {
+
+    }
+}

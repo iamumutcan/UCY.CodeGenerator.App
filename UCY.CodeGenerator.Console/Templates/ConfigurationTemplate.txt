@@ -1,0 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using {{ProjectName}}{{CoreLayer}}.Model;
+
+namespace {{ProjectName}}{{RepositoryLayer}}.Configurations
+{
+    internal class {{ModelName}}Configuration : IEntityTypeConfiguration<{{ModelName}}>
+    {
+        public void Configure(EntityTypeBuilder<{{ModelName}}> builder)
+        {
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseIdentityColumn();
+
+            builder.ToTable("{{ModelName}}");
+        }
+    }
+}

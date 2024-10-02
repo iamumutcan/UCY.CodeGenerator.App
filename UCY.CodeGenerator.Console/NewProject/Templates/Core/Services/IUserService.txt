@@ -1,0 +1,8 @@
+using {{ProjectName}}{{CoreLayer}}.Model;
+
+namespace {{ProjectName}}{{CoreLayer}}.Services;
+
+public interface IUserService : IService<User>
+{
+    public Task<User> Login(User user);
+}

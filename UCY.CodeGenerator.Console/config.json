@@ -1,0 +1,10 @@
+﻿{
+  "ProjectName": "Nlayer",
+  "ProjectFilePath": "C:\\ProjeDizini\\new",
+  "API": ".API",
+  "Caching": ".Caching",
+  "Core": ".Core",
+  "Repository": ".Repository",
+  "Service": ".Service",
+  "Web": ".Web"
+}

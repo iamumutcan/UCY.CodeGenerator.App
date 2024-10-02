@@ -1,0 +1,7 @@
+namespace {{ProjectName}}{{CoreLayer}}.DTOs
+{
+    public class {{ModelName}}Dto : BaseDto
+    {
+         {{DtoPropList}}
+    }
+}

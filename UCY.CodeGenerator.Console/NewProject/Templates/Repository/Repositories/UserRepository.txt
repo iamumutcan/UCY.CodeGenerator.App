@@ -1,0 +1,13 @@
+using {{ProjectName}}{{CoreLayer}}.Model;
+using {{ProjectName}}{{CoreLayer}}.Repositories;
+
+namespace {{ProjectName}}{{RepositoryLayer}}.Repositories;
+
+public class UserRepository : GenericRepository<User>, IUserRepository
+{
+    public UserRepository(AppDbContext context) : base(context)
+    {
+    }
+
+
+}

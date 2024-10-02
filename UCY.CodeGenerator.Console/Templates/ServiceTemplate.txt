@@ -1,0 +1,23 @@
+using AutoMapper;
+using {{ProjectName}}{{CoreLayer}}.DTOs;
+using {{ProjectName}}{{CoreLayer}}.Model;
+using {{ProjectName}}{{CoreLayer}}.Repositories;
+using {{ProjectName}}{{CoreLayer}}.Services;
+using {{ProjectName}}{{CoreLayer}}.UnitOfWorks;
+
+namespace {{ProjectName}}{{ServiceLayer}}.Services
+{
+    public class {{ModelName}}Service : Service<{{ModelName}}>, I{{ModelName}}Service
+    {
+        private readonly I{{ModelName}}Repository _{{modelNameLower}}Repository;
+        private readonly IMapper _mapper;
+
+        public {{ModelName}}Service(IGenericRepository<{{ModelName}}> repository, IUnitOfWork unitOfWork, IMapper mapper, I{{ModelName}}Repository {{modelNameLower}}Repository) 
+            : base(repository, unitOfWork)
+        {
+            _mapper = mapper;
+            _{{modelNameLower}}Repository = {{modelNameLower}}Repository;
+        }
+
+    }
+}

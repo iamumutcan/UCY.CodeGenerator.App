@@ -1,0 +1,9 @@
+using {{ProjectName}}{{CoreLayer}}.Model;
+
+namespace {{ProjectName}}{{CoreLayer}}.Repositories
+{
+    public interface I{{ModelName}}Repository : IGenericRepository<{{ModelName}}>
+    {
+       
+    }
+}

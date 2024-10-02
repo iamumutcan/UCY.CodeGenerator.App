@@ -1,0 +1,8 @@
+using {{ProjectName}}{{CoreLayer}}.Model;
+
+namespace {{ProjectName}}{{CoreLayer}}.Repositories;
+
+public interface IUserRepository : IGenericRepository<User>
+{
+
+}

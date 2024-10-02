@@ -1,0 +1,15 @@
+﻿using Microsoft.EntityFrameworkCore;
+using {{ProjectName}}{{CoreLayer}}.Model;
+using {{ProjectName}}{{CoreLayer}}.Repositories;
+
+namespace {{ProjectName}}{{RepositoryLayer}}.Repositories
+{
+    public class {{ModelName}}Repository : GenericRepository<{{ModelName}}>, I{{ModelName}}Repository
+    {
+        public {{ModelName}}Repository(AppDbContext context) : base(context)
+        {
+        }
+
+    
+    }
+}

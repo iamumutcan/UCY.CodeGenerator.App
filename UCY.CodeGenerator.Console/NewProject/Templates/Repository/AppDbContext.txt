@@ -1,0 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using {{ProjectName}}{{CoreLayer}}.Model;
+using System.Reflection;
+
+namespace {{ProjectName}}{{RepositoryLayer}};
+
+public class AppDbContext : DbContext
+{
+
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+    {
+    }
+
+    public DbSet<User> Users { get; set; }
+     
+}

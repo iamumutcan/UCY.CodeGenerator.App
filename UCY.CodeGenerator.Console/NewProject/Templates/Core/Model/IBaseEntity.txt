@@ -1,0 +1,9 @@
+namespace {{ProjectName}}{{CoreLayer}}.Model;
+
+public interface IBaseEntity
+{
+    int Id { get; set; }
+    public DateTime CreatedDate { get; set; }
+    public DateTime? UpdatedDate { get; set; }
+    bool IsDeleted { get; set; }
+}

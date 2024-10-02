@@ -1,0 +1,88 @@
+using Microsoft.EntityFrameworkCore;
+using {{ProjectName}}{{CoreLayer}}.Model;
+using {{ProjectName}}{{CoreLayer}}.Repositories;
+using System.Linq.Expressions;
+
+namespace {{ProjectName}}{{RepositoryLayer}}.Repositories;
+
+public class GenericRepository<T> : IGenericRepository<T> where T : class, IBaseEntity
+{
+    protected readonly AppDbContext _context;
+    private readonly DbSet<T> _dbSet;
+
+    public GenericRepository(AppDbContext context)
+    {
+        _context = context;
+        _dbSet = context.Set<T>();
+    }
+    public async Task AddAsync(T entity)
+    {
+        entity.CreatedDate = DateTime.Now;
+        await _dbSet.AddAsync(entity);
+
+    }
+
+    public async Task AddRangeAsync(IEnumerable<T> entities)
+    {
+        await _dbSet.AddRangeAsync(entities);
+    }
+
+    public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
+    {
+        return await _dbSet.AnyAsync(expression);
+    }
+
+    public IQueryable<T> GetAll()
+    {
+        return _dbSet.AsNoTracking().AsQueryable().Where(e => !e.IsDeleted);
+    }
+
+    public async Task<T> GetByIdAsync(int id)
+    {
+        return await _dbSet.AsNoTracking().FirstOrDefaultAsync(e => e.Id == id && !e.IsDeleted);
+    }
+
+    public void Remove(T entity)
+    {
+
+        _dbSet.Remove(entity);
+    }
+
+    public void RemoveRange(IEnumerable<T> entities)
+    {
+        _dbSet.RemoveRange(entities);
+    }
+
+    public void Update(T entity)
+    {
+        entity.UpdatedDate = DateTime.Now;
+        _dbSet.Update(entity);
+    }
+
+    public IQueryable<T> Where(Expression<Func<T, bool>> expression)
+    {
+        return _dbSet.Where(expression);
+    }
+    public async Task<PaginationModel<T>> GetPagedDataAsync(int pageNumber, int pageSize, Expression<Func<T, bool>> filter = null)
+    {
+        var query = _dbSet.AsQueryable();
+
+        if (filter != null)
+        {
+            query = query.Where(filter);
+        }
+
+        var totalCount = await query.CountAsync();
+        var items = await query.Skip((pageNumber - 1) * pageSize)
+                               .Take(pageSize)
+                               .ToListAsync();
+
+        return new PaginationModel<T>
+        {
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            TotalCount = totalCount,
+            Items = items
+        };
+    }
+}

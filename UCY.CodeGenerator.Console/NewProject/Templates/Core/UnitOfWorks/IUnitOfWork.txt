@@ -1,0 +1,7 @@
+namespace {{ProjectName}}{{CoreLayer}}.UnitOfWorks;
+
+public interface IUnitOfWork
+{
+    Task ComitAsync();
+    void Comit();
+}
