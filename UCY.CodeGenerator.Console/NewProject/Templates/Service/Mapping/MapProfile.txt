@@ -1,0 +1,14 @@
+using AutoMapper;
+using {{ProjectName}}{{CoreLayer}}.DTOs;
+using {{ProjectName}}{{CoreLayer}}.Model;
+
+namespace Nlayer.Service.Mapping;
+
+public class MapProfile : Profile
+{
+    public MapProfile()
+    {
+        CreateMap<User, UserDto>().ReverseMap();
+
+    }
+}

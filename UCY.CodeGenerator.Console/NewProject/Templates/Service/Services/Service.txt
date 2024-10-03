@@ -1,0 +1,117 @@
+using Microsoft.EntityFrameworkCore;
+using {{ProjectName}}{{CoreLayer}}.Model;
+using {{ProjectName}}{{CoreLayer}}.Repositories;
+using {{ProjectName}}{{CoreLayer}}.Services;
+using {{ProjectName}}{{CoreLayer}}.UnitOfWorks;
+using {{ProjectName}}{{ServiceLayer}}.Exceptions;
+using System.Linq.Expressions;
+
+namespace {{ProjectName}}{{ServiceLayer}}.Services;
+
+public class Service<T> : IService<T> where T : class, IBaseEntity
+{
+    private readonly IGenericRepository<T> _repository;
+    private readonly IUnitOfWork _unitOfWork;
+
+    public Service(IGenericRepository<T> repository, IUnitOfWork unitOfWork)
+    {
+        _repository = repository;
+        _unitOfWork = unitOfWork;
+    }
+
+    public async Task<T> AddAsync(T entity)
+    {
+        await _repository.AddAsync(entity);
+        await _unitOfWork.ComitAsync();
+        return entity;
+    }
+
+    public async Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities)
+    {
+        await _repository.AddRangeAsync(entities);
+        await _unitOfWork.ComitAsync();
+        return entities;
+    }
+
+    public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression)
+    {
+        return await _repository.AnyAsync(expression);
+    }
+
+    public async Task<IEnumerable<T>> GetAllAsync()
+    {
+        return await _repository.GetAll().ToListAsync();
+    }
+
+    public async Task<T> GetByIdAsync(int id)
+    {
+        var hasProduct = await _repository.GetByIdAsync(id);
+
+        if (hasProduct == null)
+        {
+            throw new NotFoundExcepiton($"{typeof(T).Name}({id}) not found");
+        }
+        return hasProduct;
+    }
+
+    public async Task RemoveAsync(T entity, bool? hardelete = false)
+    {
+        if (hardelete == true)
+        {
+            // Hard delete: Veriyi fiziksel olarak sil
+            _repository.Remove(entity);
+        }
+        else
+        {
+            // Soft delete: Veriyi silinmiþ olarak iþaretle
+            var entityToUpdate = await _repository.GetByIdAsync(entity.Id); // Veya uygun bir yöntemle varlýðý bulur.
+
+            if (entityToUpdate != null)
+            {
+                entityToUpdate.IsDeleted = true; // Soft delete olarak iþaretle
+                _repository.Update(entityToUpdate); // Güncelle
+            }
+        }
+
+        await _unitOfWork.ComitAsync(); // Deðiþiklikleri kaydet
+    }
+
+    public async Task RemoveRangeAsync(IEnumerable<T> entities)
+    {
+        _repository.RemoveRange(entities);
+        await _unitOfWork.ComitAsync();
+    }
+    public async Task SoftDelete(int id)
+    {
+        var entity = await _repository.GetByIdAsync(id); // Veriyi id'ye göre bulun
+        if (entity != null)
+        {
+            entity.IsDeleted = true; // Silinmiþ olarak iþaretleyin
+            _repository.Update(entity); // Güncelleyin
+            await _unitOfWork.ComitAsync(); // Deðiþiklikleri kaydedin
+        }
+    }
+    public async Task UpdateAsync(T entity)
+    {
+        _repository.Update(entity);
+        await _unitOfWork.ComitAsync();
+    }
+
+    public IQueryable<T> Where(Expression<Func<T, bool>> expression)
+    {
+        return _repository.Where(expression);
+    }
+    public async Task<PaginationModel<T>> GetPagedDataAsync(int pageNumber, int pageSize)
+    {
+        var query = _repository.GetAll();
+        var totalCount = await query.CountAsync();
+        var items = await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+        return new PaginationModel<T>
+        {
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            TotalCount = totalCount,
+            Items = items
+        };
+    }
+}

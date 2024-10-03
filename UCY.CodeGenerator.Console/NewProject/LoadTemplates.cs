@@ -22,6 +22,7 @@ namespace UCY.CodeGenerator.Console.NewProject
             TemplatesPath = Path.Combine(_TemplatesPath, @"..\..\..\NewProject\Templates");
             CorePathLoad();
             RepositoryPathLoad();
+            SerivcePathLoad();
         }
 
         public void CorePathLoad()
@@ -31,7 +32,7 @@ namespace UCY.CodeGenerator.Console.NewProject
             var dtoFiles = new[] { "BaseDto", "CustomResponseDto", "NoContentDto", "PaginationDto", "UserDto" };
             var modelFiles = new[] { "BaseEntity", "IBaseEntity", "JwtSettings", "PaginationModel", "User" };
             var repositoryFiles = new[] { "IGenericRepository", "IUserRepository" };
-            var serviceFiles = new[] { "IService", "IUser" };
+            var serviceFiles = new[] { "IService", "IUserService" };
             var unitOfWorkFiles = new[] { "IUnitOfWork" };
 
             // Tüm şablonları yükle
@@ -42,7 +43,7 @@ namespace UCY.CodeGenerator.Console.NewProject
             LoadFiles(unitOfWorkFiles, "Core", "UnitOfWorks");
             foreach (var selectedTemplate in Templates) {
                 BaseClassGenerator(selectedTemplate.Value,selectedTemplate.FullPath());
-            
+
             }
         }
         public void RepositoryPathLoad()
@@ -51,13 +52,32 @@ namespace UCY.CodeGenerator.Console.NewProject
             // Dosya adları ve dizinleri
             var repositoriesFiles = new[] { "GenericRepository", "UserRepository" };
             var unitOfWorksFiles = new[] { "UnitOfWork" };
-            var baseRepositoryFiles = new[] {"AppDbContext"};
+            var baseRepositoryFiles = new[] { "AppDbContext" };
 
             // Tüm şablonları yükle
             LoadFiles(repositoriesFiles, "Repository", "Repositories");
             LoadFiles(unitOfWorksFiles, "Repository", "UnitOfWorks");
             LoadFiles(baseRepositoryFiles, "Repository", "");
             foreach (var selectedTemplate in Templates)
+            {
+                BaseClassGenerator(selectedTemplate.Value, selectedTemplate.FullPath());
+
+            }
+        }
+
+        public void SerivcePathLoad()
+        {
+            Templates.Clear();
+            // Dosya adları ve dizinleri
+            var exceptionsFiles = new[] { "AuthorizationException", "ClientSideException" , "NotFoundExcepiton" };
+            var mappingFiles = new[] { "MapProfile" };
+            var serviceFiles = new[] { "Service", "UserService" };
+
+            // Tüm şablonları yükle
+            LoadFiles(exceptionsFiles, "Service", "Exceptions");
+            LoadFiles(mappingFiles, "Service", "Mapping");
+            LoadFiles(serviceFiles, "Service", "Services");
+            foreach (var selectedTemplate in Templates) 
             {
                 BaseClassGenerator(selectedTemplate.Value, selectedTemplate.FullPath());
 
