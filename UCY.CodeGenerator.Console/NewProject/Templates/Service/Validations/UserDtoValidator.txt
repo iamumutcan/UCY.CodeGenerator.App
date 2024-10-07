@@ -1,0 +1,14 @@
+using FluentValidation;
+using {{ProjectName}}{{CoreLayer}}.DTOs;
+
+namespace {{ProjectName}}{{ServiceLayer}}.Validations;
+
+public class UserDtoValidator : AbstractValidator<UserDto>
+{
+    public UserDtoValidator()
+    {
+        RuleFor(x => x.UserName).NotEmpty().WithMessage("{PropertyName} is required").NotNull().WithMessage("{PropertyName} is required");
+        RuleFor(x => x.Email).NotEmpty().WithMessage("{PropertyName} is required").NotNull().WithMessage("{PropertyName} is required");
+        RuleFor(x => x.PasswordHash).NotEmpty().WithMessage("{PropertyName} is required").NotNull().WithMessage("{PropertyName} is required");
+    }
+}

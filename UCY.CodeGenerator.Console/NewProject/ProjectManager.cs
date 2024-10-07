@@ -121,9 +121,13 @@ public class ProjectManager
     {
         return $@"
   <ItemGroup>
-    <PackageReference Include=""Autofac.Extensions.DependencyInjection"" Version=""9.0.0"" />
+     <PackageReference Include=""Autofac.Extensions.DependencyInjection"" Version=""9.0.0"" />
     <PackageReference Include=""Microsoft.AspNetCore.Authentication.JwtBearer"" Version=""8.0.8"" />
-    <PackageReference Include=""Microsoft.EntityFrameworkCore.Design"" Version=""8.0.8"" />
+    <PackageReference Include=""Microsoft.EntityFrameworkCore.Design"" Version=""8.0.8"">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include=""Microsoft.EntityFrameworkCore.InMemory"" Version=""8.0.8"" />
     <PackageReference Include=""Microsoft.IdentityModel.Tokens"" Version=""8.0.2"" />
     <PackageReference Include=""Swashbuckle.AspNetCore"" Version=""6.7.1"" />
     <PackageReference Include=""System.IdentityModel.Tokens.Jwt"" Version=""8.0.2"" />

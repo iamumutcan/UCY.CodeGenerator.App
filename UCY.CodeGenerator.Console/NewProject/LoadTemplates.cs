@@ -23,6 +23,7 @@ namespace UCY.CodeGenerator.Console.NewProject
             CorePathLoad();
             RepositoryPathLoad();
             SerivcePathLoad();
+            APIPathLoad();
         }
 
         public void CorePathLoad()
@@ -72,16 +73,20 @@ namespace UCY.CodeGenerator.Console.NewProject
             var exceptionsFiles = new[] { "AuthorizationException", "ClientSideException" , "NotFoundExcepiton" };
             var mappingFiles = new[] { "MapProfile" };
             var serviceFiles = new[] { "Service", "UserService" };
+            var validationsFiles = new[] { "UserDtoValidator" };
 
             // Tüm şablonları yükle
             LoadFiles(exceptionsFiles, "Service", "Exceptions");
             LoadFiles(mappingFiles, "Service", "Mapping");
             LoadFiles(serviceFiles, "Service", "Services");
+            LoadFiles(validationsFiles, "Service", "Validations");
+
             foreach (var selectedTemplate in Templates) 
             {
                 BaseClassGenerator(selectedTemplate.Value, selectedTemplate.FullPath());
-
             }
+            Directory.CreateDirectory(Path.GetDirectoryName($"{CustomConfig.ProjectFilePath}\\{CustomConfig.ProjectName}{CustomConfig.Service}\\Validations"));
+
         }
         private void LoadFiles(IEnumerable<string> fileNames,string layer, string folder)
         {
@@ -106,6 +111,30 @@ namespace UCY.CodeGenerator.Console.NewProject
             }
         }
 
+        public void APIPathLoad()
+        {
+            Templates.Clear();
+            // Dosya adları ve dizinleri
+            var controllersFiles = new[] { "CustomBaseController", "UserController" };
+            var filtersFiles = new[] { "NotFoundFilter", "ValidateFilterAttribute" };
+            var middlewaresFiles = new[] { "UseCustomExceptionHandler" };
+            var modulesFiles = new[] { "RepoServiceModule" };
+            var baseRepositoryFiles = new[] { "Program" };
+
+            // Tüm şablonları yükle
+            LoadFiles(controllersFiles, "API", "Controllers");
+            LoadFiles(filtersFiles, "API", "Filters");
+            LoadFiles(middlewaresFiles, "API", "Middlewares");
+            LoadFiles(modulesFiles, "API", "Modules");
+            LoadFiles(baseRepositoryFiles, "API", "");
+            foreach (var selectedTemplate in Templates)
+            {
+                BaseClassGenerator(selectedTemplate.Value, selectedTemplate.FullPath());
+            }
+            string readappsettingfile = File.ReadAllText(Path.Combine(CustomConfig.projectDirectory, @"..\..\..\NewProject\Templates\API\appsettings.json"));
+            string writeAppsettingfile = $"{CustomConfig.ProjectFilePath}\\{CustomConfig.ProjectName}{CustomConfig.API}\\appsettings.json";
+            BaseClassGenerator(readappsettingfile, writeAppsettingfile);
+        }
         public void BaseClassGenerator(string _template, string _path)
         {
             string generatorCode = _template

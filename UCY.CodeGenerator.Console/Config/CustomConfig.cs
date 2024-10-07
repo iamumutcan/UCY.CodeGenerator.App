@@ -9,7 +9,7 @@ namespace UCY.CodeGenerator.Console.Config;
 
 public static class CustomConfig
 {
-    private static string projectDirectory = AppDomain.CurrentDomain.BaseDirectory;
+    public static string projectDirectory = AppDomain.CurrentDomain.BaseDirectory;
     public static string configFilePath = Path.Combine(projectDirectory, @"..\..\..\config.json");
     public static string ModelName { get; set; }
     public static string ModelNameLower { get; set; }
