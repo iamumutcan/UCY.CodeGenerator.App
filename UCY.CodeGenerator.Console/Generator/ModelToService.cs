@@ -28,6 +28,8 @@ namespace UCY.CodeGenerator.Console.Generator
             generator.ServiceGenerator();
             generator.DtoGenerator(properties);
             generator.ApiControllerGenerator();
+            generator.AddModelToDbContext(CustomConfig.ModelName);
+            generator.AddModelToMapProfile(CustomConfig.ModelName);
 
         }
         public void SelectModel()

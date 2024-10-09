@@ -8,12 +8,12 @@ using System.Linq.Expressions;
 
 namespace {{ProjectName}}{{APILayer}}.Controllers
 {
-    public class {{ModelName}}sController : CustomBaseController
+    public class {{ModelName}}Controller : CustomBaseController
     {
         private readonly IMapper _mapper;
         private readonly I{{ModelName}}Service _service;
 
-        public {{ModelName}}sController(IMapper mapper, I{{ModelName}}Service service)
+        public {{ModelName}}Controller(IMapper mapper, I{{ModelName}}Service service)
         {
             _service = service;
             _mapper = mapper;
