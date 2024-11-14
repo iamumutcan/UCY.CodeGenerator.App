@@ -10,7 +10,7 @@
         "projectUniqueName": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj",
         "projectName": "UCY.CodeGenerator.Console",
         "projectPath": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj",
-        "packagesPath": "C:\\Users\\umutcanyilmaz\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\AVVA\\.nuget\\packages\\",
         "outputPath": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
@@ -18,7 +18,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\umutcanyilmaz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\AVVA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"

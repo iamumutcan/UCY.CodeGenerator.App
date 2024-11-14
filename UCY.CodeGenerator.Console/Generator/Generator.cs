@@ -98,7 +98,12 @@ public class Generator
         Directory.CreateDirectory(Path.GetDirectoryName(generatorPath));
         File.WriteAllText(generatorPath, generatorCode);
     }
-    public void DtoGenerator(List<ModelProperty> properties)
+    public void DtoGeneratorMulti(List<ModelProperty> properties)
+    {
+        DtoGenerator(properties,"User");
+    }
+
+    public void DtoGenerator(List<ModelProperty> properties,string dtoFilename)
     {
         string DtoPropList = "";
         foreach (var prop in properties)
@@ -116,7 +121,7 @@ public class Generator
             .Replace("{{CachingLayer}}", CustomConfig.Caching)
             .Replace("{{modelNameLower}}", CustomConfig.ModelNameLower)
             .Replace("{{ModelName}}", CustomConfig.ModelName);
-        string generatorPath = Path.Combine(corePath + "\\" + "DTOs", $"{CustomConfig.ModelName}Dto.cs");
+        string generatorPath = Path.Combine(corePath + "\\" + "DTOs", $"{CustomConfig.ModelName}{dtoFilename}Dto.cs");
         Directory.CreateDirectory(Path.GetDirectoryName(generatorPath));
         File.WriteAllText(generatorPath, generatorCode);
     }

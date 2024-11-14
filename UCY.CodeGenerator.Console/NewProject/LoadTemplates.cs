@@ -29,15 +29,16 @@ namespace UCY.CodeGenerator.Console.NewProject
         public void CorePathLoad()
         {
             Templates.Clear();
-            // Dosya adları ve dizinleri
+            // File names and directories
             var dtoFiles = new[] { "BaseDto", "CustomResponseDto", "NoContentDto", "PaginationDto", "UserDto" };
             var modelFiles = new[] { "BaseEntity", "IBaseEntity", "JwtSettings", "PaginationModel", "User" };
             var repositoryFiles = new[] { "IGenericRepository", "IUserRepository" };
             var serviceFiles = new[] { "IService", "IUserService" };
             var unitOfWorkFiles = new[] { "IUnitOfWork" };
 
-            // Tüm şablonları yükle
-            LoadFiles(dtoFiles, "Core","DTos");
+            // Load all templates
+            LoadFiles(dtoFiles, "Core", "DTos\\Base");
+            LoadFiles(dtoFiles, "Core", "DTos\\User");
             LoadFiles(modelFiles, "Core", "Model");
             LoadFiles(repositoryFiles, "Core", "Repositories");
             LoadFiles(serviceFiles, "Core", "Services");
@@ -50,12 +51,12 @@ namespace UCY.CodeGenerator.Console.NewProject
         public void RepositoryPathLoad()
         {
             Templates.Clear();
-            // Dosya adları ve dizinleri
+            // File names and directories
             var repositoriesFiles = new[] { "GenericRepository", "UserRepository" };
             var unitOfWorksFiles = new[] { "UnitOfWork" };
             var baseRepositoryFiles = new[] { "AppDbContext" };
 
-            // Tüm şablonları yükle
+            // Load all templates
             LoadFiles(repositoriesFiles, "Repository", "Repositories");
             LoadFiles(unitOfWorksFiles, "Repository", "UnitOfWorks");
             LoadFiles(baseRepositoryFiles, "Repository", "");
@@ -69,13 +70,13 @@ namespace UCY.CodeGenerator.Console.NewProject
         public void SerivcePathLoad()
         {
             Templates.Clear();
-            // Dosya adları ve dizinleri
+            // File names and directories
             var exceptionsFiles = new[] { "AuthorizationException", "ClientSideException" , "NotFoundExcepiton" };
             var mappingFiles = new[] { "MapProfile" };
             var serviceFiles = new[] { "Service", "UserService" };
             var validationsFiles = new[] { "UserDtoValidator" };
 
-            // Tüm şablonları yükle
+            // Load all templates
             LoadFiles(exceptionsFiles, "Service", "Exceptions");
             LoadFiles(mappingFiles, "Service", "Mapping");
             LoadFiles(serviceFiles, "Service", "Services");
@@ -114,14 +115,14 @@ namespace UCY.CodeGenerator.Console.NewProject
         public void APIPathLoad()
         {
             Templates.Clear();
-            // Dosya adları ve dizinleri
+            // File names and directories
             var controllersFiles = new[] { "CustomBaseController", "UserController" };
             var filtersFiles = new[] { "NotFoundFilter", "ValidateFilterAttribute" };
             var middlewaresFiles = new[] { "UseCustomExceptionHandler" };
             var modulesFiles = new[] { "RepoServiceModule" };
             var baseRepositoryFiles = new[] { "Program" };
 
-            // Tüm şablonları yükle
+            // Load all templates
             LoadFiles(controllersFiles, "API", "Controllers");
             LoadFiles(filtersFiles, "API", "Filters");
             LoadFiles(middlewaresFiles, "API", "Middlewares");

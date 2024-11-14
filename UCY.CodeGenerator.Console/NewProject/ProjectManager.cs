@@ -24,7 +24,7 @@ public class ProjectManager
 
     public void Start()
     {
-        System.Console.WriteLine("Yeni proje oluşturmak ister misiniz? (y/n):");
+        System.Console.WriteLine("Do you want to create a new project? (y/n):");
         string cevap = System.Console.ReadLine();
 
         if (cevap?.ToLower() == "y")
@@ -33,38 +33,38 @@ public class ProjectManager
         }
         else
         {
-            Log("Yeni proje oluşturma işlemi iptal edildi.");
+            Log("The new project creation process has been canceled.");
         }
     }
 
     private void CreateNewProject()
     {
-        string projeDizini = _config.ProjectFilePath;
+        string projectDirectory = _config.ProjectFilePath;
 
-        if (string.IsNullOrEmpty(projeDizini))
+        if (string.IsNullOrEmpty(projectDirectory))
         {
-            Log("Geçersiz dizin girdiniz, işlem iptal edildi.");
+            Log("You entered an invalid directory, the operation has been canceled.");
             return;
         }
 
-        if (!Directory.Exists(projeDizini))
+        if (!Directory.Exists(projectDirectory))
         {
-            Directory.CreateDirectory(projeDizini);
-            Log($"Ana proje dizini oluşturuldu: {projeDizini}");
+            Directory.CreateDirectory(projectDirectory);
+            Log($"Main project directory created: {projectDirectory}");
         }
 
-        CreateSolution(projeDizini, _config.ProjectName);
-        CreateProject(_config.ProjectName, projeDizini, _config.API, "webapi", true, GetAPIReferences());
-        CreateProject(_config.ProjectName, projeDizini, _config.Caching, "classlib", false, GetCachingReferences());
-        CreateProject(_config.ProjectName, projeDizini, _config.Core, "classlib", false, null);
-        CreateProject(_config.ProjectName, projeDizini, _config.Repository, "classlib", false, GetRepositoryReferences());
-        CreateProject(_config.ProjectName, projeDizini, _config.Service, "classlib", false, GetServiceReferences());
-        CreateProject(_config.ProjectName, projeDizini, _config.Web, "mvc", true, GetWebReferences());
+        CreateSolution(projectDirectory, _config.ProjectName);
+        CreateProject(_config.ProjectName, projectDirectory, _config.API, "webapi", true, GetAPIReferences());
+        CreateProject(_config.ProjectName, projectDirectory, _config.Caching, "classlib", false, GetCachingReferences());
+        CreateProject(_config.ProjectName, projectDirectory, _config.Core, "classlib", false, null);
+        CreateProject(_config.ProjectName, projectDirectory, _config.Repository, "classlib", false, GetRepositoryReferences());
+        CreateProject(_config.ProjectName, projectDirectory, _config.Service, "classlib", false, GetServiceReferences());
+        CreateProject(_config.ProjectName, projectDirectory, _config.Web, "mvc", true, GetWebReferences());
 
 
         LoadTemplates loadTemplates = new LoadTemplates();
 
-        Log("Proje yapısı başarıyla oluşturuldu.");
+        Log("The project structure has been successfully created.");
     }
 
     private void CreateSolution(string basePath, string solutionName)
@@ -75,7 +75,7 @@ public class ProjectManager
         {
             string dotnetNewSlnCmd = $"dotnet new sln -n {solutionName} -o \"{basePath}\"";
             RunCommand(dotnetNewSlnCmd);
-            Log($".sln dosyası oluşturuldu: {solutionPath}");
+            Log($".sln file created: {solutionPath}");
         }
     }
 
@@ -86,7 +86,7 @@ public class ProjectManager
         if (!Directory.Exists(layerPath))
         {
             Directory.CreateDirectory(layerPath);
-            Log($"{projectName}{layerName} katmanı oluşturuldu: {layerPath}");
+            Log($"{projectName}{layerName} layer created: {layerPath}");
 
             string dotnetNewCmd = $"dotnet new {projectType} -n {projectName}{layerName} -o \"{layerPath}\"";
             RunCommand(dotnetNewCmd);
@@ -98,7 +98,7 @@ public class ProjectManager
         }
         else
         {
-            Log($"{projectName}{layerName} katmanı zaten mevcut.");
+            Log($"{projectName}{layerName} layer already exists.");
         }
     }
 
@@ -112,7 +112,7 @@ public class ProjectManager
             {
                 updatedContent = updatedContent.Replace("</Project>", references + "\n</Project>");
                 File.WriteAllText(csprojFilePath, updatedContent);
-                Log($"{projectName}{layerName}.csproj güncellendi.");
+                Log($"{projectName}{layerName}.csproj updated.");
             }
         }
     }

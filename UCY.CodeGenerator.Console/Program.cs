@@ -6,20 +6,33 @@ Console.WriteLine("Hello, World!");
 
 CustomConfig.ConfigLoad();
 
-Console.WriteLine("[1] => Yeni Proje Oluştur");
-Console.WriteLine("[2] => Yeni API Oluştur");
-string menuSelect = System.Console.ReadLine();
-
-if(menuSelect =="1")
+while (true)
 {
-    var projectManager = new ProjectManager(CustomConfig.configFilePath);
-    projectManager.Start();
+    Console.WriteLine("[1] => Create New Project");
+    Console.WriteLine("[2] => Create New API");
+    Console.WriteLine("[x] => Exit");
+
+    string menuSelect = Console.ReadLine();
+
+    if (menuSelect == "1")
+    {
+        var projectManager = new ProjectManager(CustomConfig.configFilePath);
+        projectManager.Start();
+    }
+    else if (menuSelect == "2")
+    {
+        ModelToService modelToService = new ModelToService();
+        modelToService.StartGenerator();
+    }
+    else if (menuSelect.ToLower() == "x")
+    {
+        Console.WriteLine("Exiting program...");
+        break; 
+    }
+    else
+    {
+        Console.WriteLine("Invalid option, please try again.");
+    }
 }
 
-if (menuSelect == "2")
-{
-    ModelToService modelToService = new ModelToService();
-    modelToService.StartGenerator();
-}
-
-
+Console.WriteLine("Program has ended.");

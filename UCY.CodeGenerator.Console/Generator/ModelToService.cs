@@ -26,7 +26,7 @@ namespace UCY.CodeGenerator.Console.Generator
             generator.IServiceGenerator();
             generator.RepositoryGenerator();
             generator.ServiceGenerator();
-            generator.DtoGenerator(properties);
+            generator.DtoGeneratorMulti(properties);
             generator.ApiControllerGenerator();
             generator.AddModelToDbContext(CustomConfig.ModelName);
             generator.AddModelToMapProfile(CustomConfig.ModelName);
@@ -34,59 +34,58 @@ namespace UCY.CodeGenerator.Console.Generator
         }
         public void SelectModel()
         {
-            // Model klasörünün yolunu oluştur
+            // Create the path to the Models folder
             string modelsPath = Path.Combine(CustomConfig.ProjectFilePath, CustomConfig.ProjectName + CustomConfig.Core, "Model");
 
-            // Model dosyalarını listele
+            // List the model files
             string[] modelFiles = Directory.GetFiles(modelsPath, "*.cs");
 
-            System.Console.WriteLine("Bulunan Model Dosyaları:");
+            System.Console.WriteLine("Found Model Files:");
             for (int i = 0; i < modelFiles.Length; i++)
             {
                 System.Console.WriteLine($"{i + 1}: {Path.GetFileName(modelFiles[i])}");
             }
 
-            // Kullanıcıdan bir model seçmesini iste
-            System.Console.Write("Bir model seçin (numara): ");
+            // Ask the user to select a model
+            System.Console.Write("Select a model (number): ");
             if (int.TryParse(System.Console.ReadLine(), out int selectedIndex) && selectedIndex > 0 && selectedIndex <= modelFiles.Length)
             {
                 string selectedModelFile = modelFiles[selectedIndex - 1];
 
-                // Seçilen modelin özelliklerini listele ve dizide tut
+                // List the properties of the selected model and store them in the properties array
                 properties = GetModelProperties(selectedModelFile);
                 CustomConfig.ModelName = Path.ChangeExtension(Path.GetFileName(modelFiles[selectedIndex - 1]), null);
                 CustomConfig.ModelNameLower = CustomConfig.ModelName.ToLower();
-                System.Console.WriteLine("Model Özellikleri:");
+                System.Console.WriteLine("Model Properties:");
                 foreach (var prop in properties)
                 {
-                     System.Console.WriteLine($"{prop.Type} {prop.Name}");
+                    System.Console.WriteLine($"{prop.Type} {prop.Name}");
                 }
 
-                // Yeni model oluşturmak için özelllikleri kullan
-
-
+                // Use the properties to create a new model (if necessary)
             }
             else
             {
-                System.Console.WriteLine("Geçersiz seçim.");
+                System.Console.WriteLine("Invalid selection.");
             }
         }
-        // Model dosyasının özelliklerini döndüren metod
+
+        // Method that returns the properties of a model file
         public static List<ModelProperty> GetModelProperties(string modelFilePath)
         {
             try
             {
-                // Model dosyasını oku
+                // Read the model file
                 string code = File.ReadAllText(modelFilePath);
 
-                // Roslyn ile kodu parse et
+                // Parse the code using Roslyn
                 SyntaxTree tree = CSharpSyntaxTree.ParseText(code);
                 CompilationUnitSyntax root = tree.GetCompilationUnitRoot();
 
-                // Sınıf ve özellikleri tutacak liste
+                // List to hold the class and property information
                 List<ModelProperty> properties = new List<ModelProperty>();
 
-                // Sınıfları ve özellikleri analiz et
+                // Analyze the classes and their properties
                 foreach (var @class in root.DescendantNodes().OfType<ClassDeclarationSyntax>())
                 {
                     foreach (var property in @class.Members.OfType<PropertyDeclarationSyntax>())
@@ -101,9 +100,10 @@ namespace UCY.CodeGenerator.Console.Generator
             }
             catch (Exception ex)
             {
-                System.Console.WriteLine($"Model dosyası okunamadı: {ex.Message}");
+                System.Console.WriteLine($"Unable to read the model file: {ex.Message}");
                 return new List<ModelProperty>();
             }
         }
+
     }
 }
