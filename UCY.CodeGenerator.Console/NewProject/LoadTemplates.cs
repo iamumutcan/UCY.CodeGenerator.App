@@ -30,7 +30,7 @@ namespace UCY.CodeGenerator.Console.NewProject
         {
             Templates.Clear();
             // File names and directories
-            var dtoFiles = new[] { "BaseDto", "CustomResponseDto", "NoContentDto", "PaginationDto", "UserDto" };
+            var dtoFiles = new[] { "BaseDto", "CustomResponseDto", "NoContentDto", "PaginationDto", "UserDto", "UserLoginDto", "UserRegisterDto" };
             var modelFiles = new[] { "BaseEntity", "IBaseEntity", "JwtSettings", "PaginationModel", "User" };
             var repositoryFiles = new[] { "IGenericRepository", "IUserRepository" };
             var serviceFiles = new[] { "IService", "IUserService" };

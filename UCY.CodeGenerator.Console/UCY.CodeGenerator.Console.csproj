@@ -19,6 +19,7 @@
     <Folder Include="NewProject\Templates\API\Controllers\" />
     <Folder Include="NewProject\Templates\Core\Services\" />
     <Folder Include="NewProject\Templates\Core\Repositories\" />
+    <Folder Include="NewProject\Templates\Repository\Configurations\" />
     <Folder Include="NewProject\Templates\Service\Exceptions\" />
     <Folder Include="NewProject\Templates\Service\Services\" />
   </ItemGroup>

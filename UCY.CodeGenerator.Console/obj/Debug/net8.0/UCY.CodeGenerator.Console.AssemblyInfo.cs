@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UCY.CodeGenerator.Console")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+29aff94d75583546225793b87f0b5259641cd8e6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+df74a754269a514299473fa160718c4d106e2a33")]
 [assembly: System.Reflection.AssemblyProductAttribute("UCY.CodeGenerator.Console")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UCY.CodeGenerator.Console")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

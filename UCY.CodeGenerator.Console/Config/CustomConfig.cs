@@ -31,6 +31,7 @@ public static class CustomConfig
     public static string ServiceTemplate { get; private set; }
 
     public static string DtoTemplate { get; private set; }
+    public static string ConfigurationTemplate { get; private set; }
     public static string ApiControllerTemplate { get; private set; }
 
 
@@ -70,6 +71,9 @@ public static class CustomConfig
 
             string DtoFilePath = Path.Combine(projectDirectory, @"..\..\..\Templates\DtoTemplate.txt");
             DtoTemplate = File.ReadAllText(DtoFilePath);
+
+            string ConfigurationFilePath = Path.Combine(projectDirectory, @"..\..\..\Templates\ConfigurationTemplate.txt");
+            ConfigurationTemplate = File.ReadAllText(ConfigurationFilePath);
 
             string ControllerFilePath = Path.Combine(projectDirectory, @"..\..\..\Templates\ApiControllerTemplate.txt");
             ApiControllerTemplate = File.ReadAllText(ControllerFilePath);

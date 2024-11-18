@@ -24,8 +24,8 @@ namespace {{ProjectName}}{{APILayer}}.Controllers
         public async Task<IActionResult> All()
         {
             var items = await _service.GetAllAsync();
-            var itemsDtos = _mapper.Map<List<{{ModelName}}Dto>>(items.ToList());
-            return CreateActionResult(CustomResponseDto<List<{{ModelName}}Dto>>.Success(200, itemsDtos));
+            var itemsDtos = _mapper.Map<List<{{ModelName}}ListedResponseDto>>(items.ToList());
+            return CreateActionResult(CustomResponseDto<List<{{ModelName}}ListedResponseDto>>.Success(200, itemsDtos));
         }
 
         // GET /api/{{modelNameLower}}/5
@@ -34,20 +34,20 @@ namespace {{ProjectName}}{{APILayer}}.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             var item = await _service.GetByIdAsync(id);
-            var itemsDtos = _mapper.Map<{{ModelName}}Dto>(item);
-            return CreateActionResult(CustomResponseDto<{{ModelName}}Dto>.Success(200, itemsDtos));
+            var itemsDtos = _mapper.Map<{{ModelName}}ResponseDto>(item);
+            return CreateActionResult(CustomResponseDto<{{ModelName}}ResponseDto>.Success(200, itemsDtos));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Save({{ModelName}}Dto itemDto)
+        public async Task<IActionResult> Save({{ModelName}}CreateRequestDto itemDto)
         {
             var item = await _service.AddAsync(_mapper.Map<{{ModelName}}>(itemDto));
-            var itemsDtos = _mapper.Map<{{ModelName}}Dto>(item);
-            return CreateActionResult(CustomResponseDto<{{ModelName}}Dto>.Success(201, itemsDtos));
+            var itemsDtos = _mapper.Map<{{ModelName}}CreatedResponseDto>(item);
+            return CreateActionResult(CustomResponseDto<{{ModelName}}CreatedResponseDto>.Success(201, itemsDtos));
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update({{ModelName}}Dto itemDto)
+        public async Task<IActionResult> Update({{ModelName}}UpdateRequestDto itemDto)
         {
             await _service.UpdateAsync(_mapper.Map<{{ModelName}}>(itemDto));
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
@@ -67,15 +67,15 @@ namespace {{ProjectName}}{{APILayer}}.Controllers
         public async Task<IActionResult> GetPagedItems([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             var pagedItems = await _service.GetPagedDataAsync(pageNumber, pageSize);
-            var itemDtos = _mapper.Map<List<{{ModelName}}Dto>>(pagedItems.Items.ToList());
-            var response = new PaginationDto<{{ModelName}}Dto>
+            var itemDtos = _mapper.Map<List<{{ModelName}}ListedResponseDto>>(pagedItems.Items.ToList());
+            var response = new PaginationDto<{{ModelName}}ListedResponseDto>
             {
                 PageNumber = pagedItems.PageNumber,
                 PageSize = pagedItems.PageSize,
                 TotalCount = pagedItems.TotalCount,
                 Items = itemDtos
             };
-            return CreateActionResult(CustomResponseDto<PaginationDto<{{ModelName}}Dto>>.Success(200, response));
+            return CreateActionResult(CustomResponseDto<PaginationDto<{{ModelName}}ListedResponseDto>>.Success(200, response));
         }
     }
 }

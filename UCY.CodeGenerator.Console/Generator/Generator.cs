@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using UCY.CodeGenerator.Console.Config;
 
 namespace UCY.CodeGenerator.Console.Generator;
@@ -31,7 +32,6 @@ public class Generator
         Directory.CreateDirectory(Path.GetDirectoryName(generatorPath));
         File.WriteAllText(generatorPath, generatorCode);
     }
-
     public void IServiceGenerator()
     {
         string generatorCode = CustomConfig.IServiceTemplate
@@ -64,7 +64,6 @@ public class Generator
         Directory.CreateDirectory(Path.GetDirectoryName(generatorPath));
         File.WriteAllText(generatorPath, generatorCode);
     }
-
     public void ServiceGenerator()
     {
         string generatorCode = CustomConfig.ServiceTemplate
@@ -81,7 +80,6 @@ public class Generator
         Directory.CreateDirectory(Path.GetDirectoryName(generatorPath));
         File.WriteAllText(generatorPath, generatorCode);
     }
-
     public void ApiControllerGenerator()
     {
         string generatorCode = CustomConfig.ApiControllerTemplate
@@ -98,12 +96,37 @@ public class Generator
         Directory.CreateDirectory(Path.GetDirectoryName(generatorPath));
         File.WriteAllText(generatorPath, generatorCode);
     }
-    public void DtoGeneratorMulti(List<ModelProperty> properties)
+    public void DtoGeneratorMulti(List<ModelProperty> properties,string name)
     {
-        DtoGenerator(properties,"User");
+        DtoGenerator(properties, name + "\\Response", name+ "Response");
+        DtoGenerator(properties, name + "\\Response", name + "CreatedResponse");
+        DtoGenerator(properties, name + "\\Response", name + "UpdatedResponse");
+        DtoGenerator(properties, name + "\\Response", name + "ListedResponse");
+        DtoGenerator(properties, name + "\\Request", name+ "Request");
+        DtoGenerator(properties, name + "\\Request", name + "CreateRequest");
+        DtoGenerator(properties, name + "\\Request", name + "UpdateRequest");
+        DtoGenerator(properties, name + "\\Request", name + "ListRequest");
     }
+    public void ConfigurationGenerator()
+    {
+        string ModelNamePluralize = Helper.Pluralize(CustomConfig.ModelName);
 
-    public void DtoGenerator(List<ModelProperty> properties,string dtoFilename)
+        string generatorCode = CustomConfig.ConfigurationTemplate
+            .Replace("{{ProjectName}}", CustomConfig.ProjectName)
+            .Replace("{{CoreLayer}}", CustomConfig.Core)
+            .Replace("{{APILayer}}", CustomConfig.API)
+            .Replace("{{RepositoryLayer}}", CustomConfig.Repository)
+            .Replace("{{ServiceLayer}}", CustomConfig.Service)
+            .Replace("{{WebLayer}}", CustomConfig.Web)
+            .Replace("{{CachingLayer}}", CustomConfig.Caching)
+            .Replace("{{modelNameLower}}", CustomConfig.ModelNameLower)
+            .Replace("{{ModelName}}", CustomConfig.ModelName)
+            .Replace("{{ModelNamePluralize}}", ModelNamePluralize);
+        string generatorPath = Path.Combine(repositoryPath + "\\" + "Configurations", $"{CustomConfig.ModelName}Configuration.cs");
+        Directory.CreateDirectory(Path.GetDirectoryName(generatorPath));
+        File.WriteAllText(generatorPath, generatorCode);
+    }
+    public void DtoGenerator(List<ModelProperty> properties,string filePath,string dtoFilename)
     {
         string DtoPropList = "";
         foreach (var prop in properties)
@@ -120,8 +143,8 @@ public class Generator
             .Replace("{{WebLayer}}", CustomConfig.Web)
             .Replace("{{CachingLayer}}", CustomConfig.Caching)
             .Replace("{{modelNameLower}}", CustomConfig.ModelNameLower)
-            .Replace("{{ModelName}}", CustomConfig.ModelName);
-        string generatorPath = Path.Combine(corePath + "\\" + "DTOs", $"{CustomConfig.ModelName}{dtoFilename}Dto.cs");
+            .Replace("{{ModelName}}", dtoFilename);
+        string generatorPath = Path.Combine(corePath + "\\DTOs\\"+ filePath, $"{dtoFilename}Dto.cs");
         Directory.CreateDirectory(Path.GetDirectoryName(generatorPath));
         File.WriteAllText(generatorPath, generatorCode);
     }
@@ -173,7 +196,19 @@ public class Generator
             System.Console.WriteLine($"{modelName} model already exists.");
         }
     }
-    public void AddModelToMapProfile(string modelName)
+    public void AddModelToMapProfileMulti(string modelName)
+    {
+        AddModelToMapProfile(modelName, modelName+ "Response");
+        AddModelToMapProfile(modelName, modelName + "CreatedResponse");
+        AddModelToMapProfile(modelName, modelName + "UpdatedResponse");
+        AddModelToMapProfile(modelName, modelName + "ListedResponse");
+        AddModelToMapProfile(modelName, modelName + "Request");
+        AddModelToMapProfile(modelName, modelName + "CreateRequest");
+        AddModelToMapProfile(modelName, modelName + "UpdateRequest");
+        AddModelToMapProfile(modelName, modelName + "ListRequest");
+
+    }
+    public void AddModelToMapProfile(string modelName, string dtoModelName)
     {
         string modelNamePluralized = Helper.Pluralize(modelName);
 
@@ -207,7 +242,11 @@ public class Generator
                     sw.WriteLine(lines[i]);
                     if (i == insertIndex - 1)
                     {
-                        sw.WriteLine($"        CreateMap<{modelName}, {modelName}Dto>().ReverseMap();");
+                        string newLine = $"        CreateMap<{modelName}, {dtoModelName}Dto>().ReverseMap();";
+                        if (!lines.Contains(newLine))
+                        {
+                            sw.WriteLine(newLine);
+                        }
                     }
                 }
             }

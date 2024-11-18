@@ -26,10 +26,12 @@ namespace UCY.CodeGenerator.Console.Generator
             generator.IServiceGenerator();
             generator.RepositoryGenerator();
             generator.ServiceGenerator();
-            generator.DtoGeneratorMulti(properties);
-            generator.ApiControllerGenerator();
+            generator.DtoGeneratorMulti(properties, CustomConfig.ModelName);
             generator.AddModelToDbContext(CustomConfig.ModelName);
-            generator.AddModelToMapProfile(CustomConfig.ModelName);
+            generator.AddModelToMapProfileMulti(CustomConfig.ModelName);
+            generator.ConfigurationGenerator();
+            generator.ApiControllerGenerator();
+
 
         }
         public void SelectModel()
