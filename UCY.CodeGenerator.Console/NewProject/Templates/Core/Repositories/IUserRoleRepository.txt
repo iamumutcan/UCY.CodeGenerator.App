@@ -1,0 +1,8 @@
+using {{ProjectName}}{{CoreLayer}}.Model;
+
+namespace {{ProjectName}}{{CoreLayer}}.Repositories;
+
+public interface IUserRoleRepository : IGenericRepository<UserRole>
+{
+	Task<List<UserRole>> GetUserRolesWithUserId(int userId);
+}

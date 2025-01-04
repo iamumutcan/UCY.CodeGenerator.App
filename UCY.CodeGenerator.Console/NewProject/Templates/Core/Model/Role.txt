@@ -1,0 +1,6 @@
+namespace {{ProjectName}}{{CoreLayer}}.Model;
+
+public class Role : BaseEntity, IBaseEntity
+{
+    public string Name { get; set; }
+}

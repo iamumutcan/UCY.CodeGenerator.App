@@ -86,57 +86,6 @@ namespace {{ProjectName}}{{APILayer}}.Controllers
         }
 
 
-        [AllowAnonymous]
-        [HttpPost("login")] // Updated route to avoid conflict
-        public async Task<IActionResult> Login(User user)
-        {
-            var authenticatedUser = await _service.Login(user);
-
-            if (authenticatedUser == null)
-            {
-                return Unauthorized("Invalid credentials");
-            }
-
-            var token = CreateToken(authenticatedUser);
-            return CreateActionResult(CustomResponseDto<string>.Success(200, token));
-        }
-
-        private string CreateToken(User user)
-        {
-            if (_jwtSettings.Key == null) throw new Exception("Jwt is not nullable");
-
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            // Örnek olarak, kullanýcý rollerini manuel olarak tanýmlayýn
-            var roles = new[] { "admin", "user", "buyer", "customer" };
-
-            // Kullanýcý rolleri yerine belirtilen rolleri claim olarak ekleyin
-            var claimArrays = new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.UserName),
-                new Claim(ClaimTypes.Role, roles[0]),  // Ýlk rolü ekle
-                new Claim(ClaimTypes.Role, roles[1]),  // Ýkinci rolü ekle
-                new Claim(ClaimTypes.Role, roles[2]),  // Üçüncü rolü ekle
-                new Claim(ClaimTypes.Role, roles[3])   // Dördüncü rolü ekle
-            };
-
-            var token = new JwtSecurityToken(
-                _jwtSettings.Issuer,
-                _jwtSettings.Audience,
-                claimArrays,
-                expires: DateTime.Now.AddHours(1),
-                signingCredentials: credentials);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-
-
-        private User TokenCheck(User user)
-        {
-            return user;
-        }
-
-
+     
     }
 }

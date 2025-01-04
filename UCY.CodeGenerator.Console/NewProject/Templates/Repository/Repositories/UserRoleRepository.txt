@@ -1,0 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using {{ProjectName}}{{CoreLayer}}.Model;
+using {{ProjectName}}{{CoreLayer}}.Repositories;
+
+namespace {{ProjectName}}{{RepositoryLayer}}.Repositories;
+
+public class UserRoleRepository : GenericRepository<UserRole>, IUserRoleRepository
+{
+    public UserRoleRepository(AppDbContext context) : base(context)
+    {
+    }
+    public async Task<List<UserRole>> GetUserRolesWithUserId(int userId)
+    {
+        return await _context.UserRoles
+            .Where(u => u.UserId == userId && !u.IsDeleted)  
+            .Include(u => u.Role) 
+            .ToListAsync();  
+    }
+
+}

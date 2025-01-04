@@ -9,6 +9,7 @@ public class MapProfile : Profile
     public MapProfile()
     {
         CreateMap<User, UserDto>().ReverseMap();
+        CreateMap<User, RegisterRequestDto>().ReverseMap();
 
     }
 }

@@ -1,0 +1,9 @@
+using {{ProjectName}}{{CoreLayer}}.Model;
+
+namespace {{ProjectName}}{{CoreLayer}}.Services;
+
+public interface IUserRoleService : IService<UserRole>
+{
+	Task<List<string>> GetUserRoleListAsync(int userId);
+
+}

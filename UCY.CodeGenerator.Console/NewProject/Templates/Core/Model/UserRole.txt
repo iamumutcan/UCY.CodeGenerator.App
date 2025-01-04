@@ -1,0 +1,14 @@
+using System.Text.Json.Serialization;
+
+namespace {{ProjectName}}{{CoreLayer}}.Model;
+
+public class UserRole : BaseEntity, IBaseEntity
+{
+    public int UserId { get; set; }
+    [JsonIgnore]
+    public User User { get; set; }
+
+    public int RoleId { get; set; }
+    [JsonIgnore]
+    public Role Role { get; set; }
+}

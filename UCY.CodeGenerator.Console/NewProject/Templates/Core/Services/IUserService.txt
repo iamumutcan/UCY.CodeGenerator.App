@@ -1,8 +1,10 @@
 using {{ProjectName}}{{CoreLayer}}.Model;
+using {{ProjectName}}{{CoreLayer}}.DTOs;
 
 namespace {{ProjectName}}{{CoreLayer}}.Services;
 
 public interface IUserService : IService<User>
 {
-    public Task<User> Login(User user);
+    public Task<User> Login(AuthLoginRequestDto user);
+    public Task<User> GetUserWithUserrolesAsync(int userId);
 }

@@ -4,28 +4,43 @@ using {{ProjectName}}{{CoreLayer}}.Model;
 using {{ProjectName}}{{CoreLayer}}.Repositories;
 using {{ProjectName}}{{CoreLayer}}.Services;
 using {{ProjectName}}{{CoreLayer}}.UnitOfWorks;
+using {{ProjectName}}{{CoreLayer}}.DTOs;
+using {{ProjectName}}{{ServiceLayer}}.Exceptions;
 
-namespace {{ProjectName}}{{ServiceLayer}}.Services
+namespace {{ProjectName}}{{ServiceLayer}}.Services;
+public class UserService : Service<User>, IUserService
 {
-    public class UserService : Service<User>, IUserService
+    private readonly IUserRepository _userRepository;
+    private readonly IUserRoleRepository _userRoleRepository;
+    private readonly IMapper _mapper;
+
+    public UserService(IGenericRepository<User> repository, IUnitOfWork unitOfWork, IMapper mapper, IUserRepository userRepository, IUserRoleRepository userRoleRepository)
+        : base(repository, unitOfWork)
     {
-        private readonly IUserRepository _userRepository;
-        private readonly IMapper _mapper;
-
-        public UserService(IGenericRepository<User> repository, IUnitOfWork unitOfWork, IMapper mapper, IUserRepository userRepository)
-            : base(repository, unitOfWork)
-        {
-            _mapper = mapper;
-            _userRepository = userRepository;
-        }
-        public async Task<User> Login(User user)
-        {
-            var data = await _userRepository
-                .Where(x => x.Email == user.Email && x.PasswordHash == user.PasswordHash)
-                .SingleOrDefaultAsync();
-            var dataDto = _mapper.Map<User>(data);
-            return dataDto;
-        }
-
+        _mapper = mapper;
+        _userRepository = userRepository;
+        _userRoleRepository = userRoleRepository;
     }
+    public async Task<User> Login(AuthLoginRequestDto user)
+    {
+        var data = await _userRepository
+            .Where(x => x.Email == user.Email && x.PasswordHash == user.PasswordHash)
+            .SingleOrDefaultAsync();
+        var dataDto = _mapper.Map<User>(data);
+        return dataDto;
+    }
+    public async Task<User> GetUserWithUserrolesAsync(int id)
+    {
+        var userWithRoles = await _userRepository.Where(u => u.Id == id && !u.IsDeleted)
+                        .Include(u => u.UserRoles)
+                        .ThenInclude(ur => ur.Role)
+                        .FirstOrDefaultAsync();
+        if (userWithRoles == null)
+        {
+            throw new NotFoundExcepiton($"User with id {id} not found.");
+        }
+        return userWithRoles;
+    }
+
 }
+

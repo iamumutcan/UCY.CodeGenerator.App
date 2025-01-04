@@ -1,0 +1,32 @@
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using {{ProjectName}}{{CoreLayer}}.Model;
+using {{ProjectName}}{{CoreLayer}}.Repositories;
+using {{ProjectName}}{{CoreLayer}}.Services;
+using {{ProjectName}}{{CoreLayer}}.UnitOfWorks;
+
+namespace {{ProjectName}}{{ServiceLayer}}.Services;
+
+public class UserRoleService : Service<UserRole>, IUserRoleService
+{
+    private readonly IUserRoleRepository _userroleRepository;
+    private readonly IMapper _mapper;
+
+    public UserRoleService(IGenericRepository<UserRole> repository, IUnitOfWork unitOfWork, IMapper mapper, IUserRoleRepository userroleRepository) 
+        : base(repository, unitOfWork)
+    {
+        _mapper = mapper;
+        _userroleRepository = userroleRepository;
+    }
+
+    public async Task<List<string>> GetUserRoleListAsync(int userId)
+    {
+        var roles = await _userroleRepository
+                    .Where(u => u.UserId == userId && !u.IsDeleted)
+                    .Include(u => u.Role)
+                    .Select(u => u.Role.Name)
+                    .ToListAsync();
+
+        return roles;
+    }
+}

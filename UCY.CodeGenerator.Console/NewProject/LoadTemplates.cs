@@ -30,15 +30,18 @@ namespace UCY.CodeGenerator.Console.NewProject
         {
             Templates.Clear();
             // File names and directories
-            var dtoFiles = new[] { "BaseDto", "CustomResponseDto", "NoContentDto", "PaginationDto", "UserDto", "UserLoginDto", "UserRegisterDto" };
-            var modelFiles = new[] { "BaseEntity", "IBaseEntity", "JwtSettings", "PaginationModel", "User" };
-            var repositoryFiles = new[] { "IGenericRepository", "IUserRepository" };
-            var serviceFiles = new[] { "IService", "IUserService" };
+            var dtoFiles = new[] { "BaseDto", "CustomResponseDto", "NoContentDto", "PaginationDto", "UserDto", "AuthLoginRequestDto", "RegisterRequestDto", "RegisterResponseDto", "UserWithRolesDto" };
+            var modelFiles = new[] { "BaseEntity", "IBaseEntity", "JwtSettings", "PaginationModel", "User", "UserRole","Role" };
+            var repositoryFiles = new[] { "IGenericRepository", "IUserRepository" , "IUserRoleRepository" };
+            var serviceFiles = new[] { "IService", "IUserService", "IUserRoleService" };
             var unitOfWorkFiles = new[] { "IUnitOfWork" };
 
             // Load all templates
             LoadFiles(dtoFiles, "Core", "DTos\\Base");
-            LoadFiles(dtoFiles, "Core", "DTos\\User");
+            LoadFiles(dtoFiles, "Core", "DTos\\User\\Request");
+            LoadFiles(dtoFiles, "Core", "DTos\\User\\Response");
+            LoadFiles(dtoFiles, "Core", "DTos\\Auth\\Request");
+            LoadFiles(dtoFiles, "Core", "DTos\\Auth\\Response");
             LoadFiles(modelFiles, "Core", "Model");
             LoadFiles(repositoryFiles, "Core", "Repositories");
             LoadFiles(serviceFiles, "Core", "Services");
@@ -52,7 +55,7 @@ namespace UCY.CodeGenerator.Console.NewProject
         {
             Templates.Clear();
             // File names and directories
-            var repositoriesFiles = new[] { "GenericRepository", "UserRepository" };
+            var repositoriesFiles = new[] { "GenericRepository", "UserRepository", "UserRoleRepository" };
             var unitOfWorksFiles = new[] { "UnitOfWork" };
             var baseRepositoryFiles = new[] { "AppDbContext" };
 
@@ -73,7 +76,7 @@ namespace UCY.CodeGenerator.Console.NewProject
             // File names and directories
             var exceptionsFiles = new[] { "AuthorizationException", "ClientSideException" , "NotFoundExcepiton" };
             var mappingFiles = new[] { "MapProfile" };
-            var serviceFiles = new[] { "Service", "UserService" };
+            var serviceFiles = new[] { "Service", "UserService", "UserRoleService" };
             var validationsFiles = new[] { "UserDtoValidator" };
 
             // Load all templates
@@ -116,7 +119,7 @@ namespace UCY.CodeGenerator.Console.NewProject
         {
             Templates.Clear();
             // File names and directories
-            var controllersFiles = new[] { "CustomBaseController", "UserController" };
+            var controllersFiles = new[] { "CustomBaseController", "UserController", "AuthController" };
             var filtersFiles = new[] { "NotFoundFilter", "ValidateFilterAttribute" };
             var middlewaresFiles = new[] { "UseCustomExceptionHandler" };
             var modulesFiles = new[] { "RepoServiceModule" };

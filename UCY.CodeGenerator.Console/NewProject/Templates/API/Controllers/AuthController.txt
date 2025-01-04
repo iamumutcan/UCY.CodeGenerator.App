@@ -1,0 +1,100 @@
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using {{ProjectName}}{{APILayer}}.Filters;
+using {{ProjectName}}{{CoreLayer}}.DTOs;
+using {{ProjectName}}{{CoreLayer}}.Model;
+using {{ProjectName}}{{CoreLayer}}.Services;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+
+namespace {{ProjectName}}{{APILayer}}.Controllers;
+
+public class AuthController : CustomBaseController
+{
+    private readonly IMapper _mapper;
+    private readonly IUserService _service;
+    private readonly IUserRoleService _userRoleService;
+    private readonly JwtSettings _jwtSettings;
+
+    public AuthController(IMapper mapper, IUserService service, IOptions<JwtSettings> jwtSettings, IUserRoleService userRoleService)
+    {
+        _service = service;
+        _mapper = mapper;
+        _jwtSettings = jwtSettings.Value;
+        _userRoleService = userRoleService;
+    }
+
+
+    [AllowAnonymous]
+    [HttpGet("UserRole")] // Updated route to avoid conflict
+    public async Task<IActionResult> UserRole(int id)
+    {
+        var item = await _service.GetUserWithUserrolesAsync(id);
+      //  var a = JsonConvert.SerializeObject(item);
+        var itemsDtos = _mapper.Map<UserWithRolesDto>(item);
+        return CreateActionResult(CustomResponseDto<UserWithRolesDto>.Success(200, itemsDtos));
+    }
+    [AllowAnonymous]
+    [HttpPost("Register")] 
+    public async Task<IActionResult> Register(RegisterRequestDto itemDto)
+    {
+        var item = await _service.AddAsync(_mapper.Map<User>(itemDto));
+        var itemsDtos = _mapper.Map<UserDto>(item);
+        return CreateActionResult(CustomResponseDto<UserDto>.Success(201, itemsDtos));
+    }
+
+    [AllowAnonymous]
+    [HttpPost("Login")] 
+    public async Task<IActionResult> Login(AuthLoginRequestDto user)
+    {
+        var authenticatedUser = await _service.Login(user);
+
+        if (authenticatedUser == null)
+        {
+            return Unauthorized("Invalid credentials");
+        }
+        var token = await CreateToken(authenticatedUser);
+        return CreateActionResult(CustomResponseDto<string>.Success(200, token));
+    }
+
+    private async Task<string> CreateToken(User user)
+    {
+        if (_jwtSettings.Key == null) throw new Exception("Jwt is not nullable");
+
+        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
+        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+        var roles = await _userRoleService.GetUserRoleListAsync(user.Id);
+
+        var claimList = new List<Claim>
+        {
+            new Claim(ClaimTypes.NameIdentifier, user.Email)
+        };
+
+        foreach (var role in roles)
+        {
+            claimList.Add(new Claim(ClaimTypes.Role, role)); 
+        }
+
+        var token = new JwtSecurityToken(
+            _jwtSettings.Issuer,
+            _jwtSettings.Audience,
+            claimList,
+            expires: DateTime.Now.AddHours(2),
+            signingCredentials: credentials);
+
+        return new JwtSecurityTokenHandler().WriteToken(token);
+    }
+
+  
+    private User TokenCheck(User user)
+    {
+        return user;
+    }
+
+
+}
