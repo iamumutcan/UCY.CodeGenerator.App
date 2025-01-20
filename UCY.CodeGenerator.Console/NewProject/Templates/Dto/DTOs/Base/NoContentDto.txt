@@ -1,0 +1,6 @@
+namespace {{ProjectName}}{{DtoLayer}}.DTOs;
+
+public class NoContentDto
+{
+
+}

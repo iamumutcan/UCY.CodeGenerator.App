@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace {{ProjectName}}{{CoreLayer}}.DTOs;
+namespace {{ProjectName}}{{DtoLayer}}.DTOs;
 
 public class CustomResponseDto<T>
 {

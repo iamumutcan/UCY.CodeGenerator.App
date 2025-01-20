@@ -1,5 +1,5 @@
 using FluentValidation;
-using {{ProjectName}}{{CoreLayer}}.DTOs;
+using {{ProjectName}}{{DtoLayer}}.DTOs;
 
 namespace {{ProjectName}}{{ServiceLayer}}.Validations;
 

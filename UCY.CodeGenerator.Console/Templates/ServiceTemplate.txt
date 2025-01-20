@@ -1,6 +1,5 @@
 using AutoMapper;
-using {{ProjectName}}{{CoreLayer}}.DTOs;
-using {{ProjectName}}{{CoreLayer}}.Model;
+1using {{ProjectName}}{{CoreLayer}}.Model;
 using {{ProjectName}}{{CoreLayer}}.Repositories;
 using {{ProjectName}}{{CoreLayer}}.Services;
 using {{ProjectName}}{{CoreLayer}}.UnitOfWorks;

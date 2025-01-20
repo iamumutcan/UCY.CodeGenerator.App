@@ -1,4 +1,4 @@
-namespace {{ProjectName}}{{CoreLayer}}.DTOs;
+namespace {{ProjectName}}{{DtoLayer}}.DTOs;
 
 public class RegisterRequestDto
 {

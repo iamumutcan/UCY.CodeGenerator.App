@@ -20,28 +20,39 @@ namespace UCY.CodeGenerator.Console.NewProject
         {
             string _TemplatesPath = AppDomain.CurrentDomain.BaseDirectory;
             TemplatesPath = Path.Combine(_TemplatesPath, @"..\..\..\NewProject\Templates");
+            DtoPathLoad();
             CorePathLoad();
             RepositoryPathLoad();
             SerivcePathLoad();
             APIPathLoad();
         }
-
-        public void CorePathLoad()
+        public void DtoPathLoad()
         {
             Templates.Clear();
             // File names and directories
             var dtoFiles = new[] { "BaseDto", "CustomResponseDto", "NoContentDto", "PaginationDto", "UserDto", "AuthLoginRequestDto", "RegisterRequestDto", "RegisterResponseDto", "UserWithRolesDto" };
+            // Load all templates
+            LoadFiles(dtoFiles, "Dto", "DTos\\Base");
+            LoadFiles(dtoFiles, "Dto", "DTos\\User\\Request");
+            LoadFiles(dtoFiles, "Dto", "DTos\\User\\Response");
+            LoadFiles(dtoFiles, "Dto", "DTos\\Auth\\Request");
+            LoadFiles(dtoFiles, "Dto", "DTos\\Auth\\Response");
+            foreach (var selectedTemplate in Templates)
+            {
+                BaseClassGenerator(selectedTemplate.Value, selectedTemplate.FullPath());
+
+            }
+        }
+        public void CorePathLoad()
+        {
+            Templates.Clear();
+            // File names and directories
             var modelFiles = new[] { "BaseEntity", "IBaseEntity", "JwtSettings", "PaginationModel", "User", "UserRole","Role" };
             var repositoryFiles = new[] { "IGenericRepository", "IUserRepository" , "IUserRoleRepository" };
             var serviceFiles = new[] { "IService", "IUserService", "IUserRoleService" };
             var unitOfWorkFiles = new[] { "IUnitOfWork" };
 
             // Load all templates
-            LoadFiles(dtoFiles, "Core", "DTos\\Base");
-            LoadFiles(dtoFiles, "Core", "DTos\\User\\Request");
-            LoadFiles(dtoFiles, "Core", "DTos\\User\\Response");
-            LoadFiles(dtoFiles, "Core", "DTos\\Auth\\Request");
-            LoadFiles(dtoFiles, "Core", "DTos\\Auth\\Response");
             LoadFiles(modelFiles, "Core", "Model");
             LoadFiles(repositoryFiles, "Core", "Repositories");
             LoadFiles(serviceFiles, "Core", "Services");
@@ -144,6 +155,7 @@ namespace UCY.CodeGenerator.Console.NewProject
             string generatorCode = _template
                 .Replace("{{ProjectName}}", CustomConfig.ProjectName)
                 .Replace("{{CoreLayer}}", CustomConfig.Core)
+                .Replace("{{DtoLayer}}", CustomConfig.Dto)
                 .Replace("{{APILayer}}", CustomConfig.API)
                 .Replace("{{RepositoryLayer}}", CustomConfig.Repository)
                 .Replace("{{ServiceLayer}}", CustomConfig.Service)

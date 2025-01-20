@@ -1,4 +1,3 @@
-using {{ProjectName}}{{CoreLayer}}.DTOs;
 using {{ProjectName}}{{CoreLayer}}.Model;
 
 namespace {{ProjectName}}{{CoreLayer}}.Services

@@ -57,6 +57,7 @@ public class ProjectManager
         CreateProject(_config.ProjectName, projectDirectory, _config.API, "webapi", true, GetAPIReferences());
         CreateProject(_config.ProjectName, projectDirectory, _config.Caching, "classlib", false, GetCachingReferences());
         CreateProject(_config.ProjectName, projectDirectory, _config.Core, "classlib", false, null);
+        CreateProject(_config.ProjectName, projectDirectory, _config.Dto, "classlib", false, null);
         CreateProject(_config.ProjectName, projectDirectory, _config.Repository, "classlib", false, GetRepositoryReferences());
         CreateProject(_config.ProjectName, projectDirectory, _config.Service, "classlib", false, GetServiceReferences());
         CreateProject(_config.ProjectName, projectDirectory, _config.Web, "mvc", true, GetWebReferences());
@@ -161,13 +162,19 @@ public class ProjectManager
     <PackageReference Include=""AutoMapper.Extensions.Microsoft.DependencyInjection"" Version=""12.0.1"" />
     <PackageReference Include=""FluentValidation.AspNetCore"" Version=""11.3.0"" />
     <ProjectReference Include=""..\{_config.ProjectName}{_config.Core}\{_config.ProjectName}{_config.Core}.csproj"" />
+    <ProjectReference Include=""..\{_config.ProjectName}{_config.Dto}\{_config.ProjectName}{_config.Dto}.csproj"" />
     <ProjectReference Include=""..\{_config.ProjectName}{_config.Repository}\{_config.ProjectName}{_config.Repository}.csproj"" />
   </ItemGroup>";
     }
 
     private string GetWebReferences()
     {
-        return null; // Web için özel bir referans eklenmeyecekse null dönebilirsiniz
+        return $@"
+              <ItemGroup>
+                <PackageReference Include=""AutoMapper.Extensions.Microsoft.DependencyInjection"" Version=""12.0.1"" />
+                <ProjectReference Include=""..\{_config.ProjectName}{_config.Core}\{_config.ProjectName}{_config.Core}.csproj"" />
+                <ProjectReference Include=""..\{_config.ProjectName}{_config.Dto}\{_config.ProjectName}{_config.Dto}.csproj"" />
+              </ItemGroup>";
     }
 
     private void RunCommand(string command)

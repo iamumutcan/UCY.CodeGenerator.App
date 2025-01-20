@@ -1,5 +1,5 @@
 using AutoMapper;
-using {{ProjectName}}{{CoreLayer}}.DTOs;
+using {{ProjectName}}{{DtoLayer}}.DTOs;
 using {{ProjectName}}{{CoreLayer}}.Model;
 
 namespace {{ProjectName}}{{ServiceLayer}}.Mapping;

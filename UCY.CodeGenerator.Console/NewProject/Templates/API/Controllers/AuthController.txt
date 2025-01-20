@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using {{ProjectName}}{{APILayer}}.Filters;
-using {{ProjectName}}{{CoreLayer}}.DTOs;
+using {{ProjectName}}{{DtoLayer}}.DTOs;
 using {{ProjectName}}{{CoreLayer}}.Model;
 using {{ProjectName}}{{CoreLayer}}.Services;
 using System.IdentityModel.Tokens.Jwt;
@@ -51,7 +51,7 @@ public class AuthController : CustomBaseController
     [HttpPost("Login")] 
     public async Task<IActionResult> Login(AuthLoginRequestDto user)
     {
-        var authenticatedUser = await _service.Login(user);
+        var authenticatedUser = await _service.Login(_mapper.Map<User>(user));
 
         if (authenticatedUser == null)
         {

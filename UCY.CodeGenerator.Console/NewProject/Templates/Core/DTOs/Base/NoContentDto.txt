@@ -1,6 +1,0 @@
-namespace {{ProjectName}}{{CoreLayer}}.DTOs;
-
-public class NoContentDto
-{
-
-}

@@ -19,6 +19,7 @@ public static class CustomConfig
     public static string API { get; private set; }
     public static string Caching { get; private set; }
     public static string Core { get; private set; }
+    public static string Dto { get; private set; }
     public static string Repository { get; private set; }
     public static string Service { get; private set; }
     public static string Web { get; private set; }
@@ -52,6 +53,7 @@ public static class CustomConfig
             API = config.API;
             Caching = config.Caching;
             Core = config.Core;
+            Dto = config.Dto;
             Repository = config.Repository;
             Service = config.Service;
             Web = config.Web;

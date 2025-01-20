@@ -4,6 +4,7 @@
   "API": ".API",
   "Caching": ".Caching",
   "Core": ".Core",
+  "Dto": ".Dto",
   "Repository": ".Repository",
   "Service": ".Service",
   "Web": ".Web"

@@ -1,6 +1,4 @@
-using {{ProjectName}}{{CoreLayer}}.Model;
-
-namespace {{ProjectName}}{{CoreLayer}}.DTOs
+namespace {{ProjectName}}{{DtoLayer}}.DTOs
 {
     public class {{ModelName}}Dto : BaseDto
     {

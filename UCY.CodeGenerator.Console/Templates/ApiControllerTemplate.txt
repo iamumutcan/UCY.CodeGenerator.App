@@ -1,6 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using {{ProjectName}}{{CoreLayer}}.DTOs;
+using {{ProjectName}}{{DtoLayer}}.DTOs;
 using {{ProjectName}}{{CoreLayer}}.Model;
 using {{ProjectName}}{{CoreLayer}}.Services;
 using {{ProjectName}}{{APILayer}}.Filters;
