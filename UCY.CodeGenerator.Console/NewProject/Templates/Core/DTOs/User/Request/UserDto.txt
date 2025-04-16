@@ -1,0 +1,9 @@
+namespace {{ProjectName}}{{CoreLayer}}.DTOs;
+
+public class UserDto : BaseDto
+{
+    public string Name { get; set; }
+    public string Lastname { get; set; }
+    public string Email { get; set; } 
+    public string PasswordHash { get; set; } 
+}

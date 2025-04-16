@@ -22,16 +22,61 @@ namespace UCY.CodeGenerator.Console.Generator
         {
             SelectModel();
             Generator generator = new Generator();
+            System.Console.WriteLine("[1] => Multi DTO");
+            System.Console.WriteLine("[2] => Single DTO");
+            System.Console.Write("Please make your selection (1 or 2): ");
+
+            // Read the selection from the user
+            int select = Convert.ToInt32(System.Console.ReadLine());
+
+            if (select == 1)
+            {
+                generator.DtoGeneratorMulti(properties, CustomConfig.ModelName);
+                generator.AddModelToMapProfileMulti(CustomConfig.ModelName);
+            }
+            else if (select == 2)
+            {
+                generator.DtoGeneratorSingle(properties, CustomConfig.ModelName);
+                generator.AddModelToMapProfileSingle(CustomConfig.ModelName);
+            }
+            else
+            {
+                System.Console.WriteLine("Invalid selection! Please choose 1 or 2.");
+                return;
+            }
             generator.IRepositoryGenerator();
             generator.IServiceGenerator();
             generator.RepositoryGenerator();
             generator.ServiceGenerator();
-            generator.DtoGeneratorMulti(properties, CustomConfig.ModelName);
             generator.AddModelToDbContext(CustomConfig.ModelName);
-            generator.AddModelToMapProfileMulti(CustomConfig.ModelName);
             generator.ConfigurationGenerator();
-            generator.ApiControllerGenerator();
+            generator.ApiControllerGenerator(select);
 
+
+        }
+        public void UpdateDtoGenerator()
+        {
+            SelectModel();
+            Generator generator = new Generator();
+
+            // Prompt the user for selection
+            System.Console.WriteLine("[1] => Multi DTO");
+            System.Console.WriteLine("[2] => Single DTO");
+            System.Console.Write("Please make your selection (1 or 2): ");
+
+            // Read the selection from the user
+            int select = Convert.ToInt32(System.Console.ReadLine());
+
+            if (select == 1)
+            {
+                generator.DtoGeneratorMulti(properties, CustomConfig.ModelName);
+                generator.AddModelToMapProfileMulti(CustomConfig.ModelName);
+            }
+            else if (select == 2)
+            {
+                generator.DtoGeneratorSingle(properties, CustomConfig.ModelName);
+                generator.AddModelToMapProfileSingle(CustomConfig.ModelName);
+            }
 
         }
         public void SelectModel()

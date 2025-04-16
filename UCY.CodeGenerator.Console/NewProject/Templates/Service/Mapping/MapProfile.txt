@@ -1,5 +1,5 @@
 using AutoMapper;
-using {{ProjectName}}{{DtoLayer}}.DTOs;
+using {{ProjectName}}{{CoreLayer}}.DTOs;
 using {{ProjectName}}{{CoreLayer}}.Model;
 
 namespace {{ProjectName}}{{ServiceLayer}}.Mapping;
@@ -8,8 +8,7 @@ public class MapProfile : Profile
 {
     public MapProfile()
     {
-        CreateMap<User, UserDto>().ReverseMap();
-        CreateMap<User, RegisterRequestDto>().ReverseMap();
+        CreateMap<BaseEntity, BaseDto>().ReverseMap();
 
     }
 }

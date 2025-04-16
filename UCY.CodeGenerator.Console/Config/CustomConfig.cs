@@ -19,7 +19,6 @@ public static class CustomConfig
     public static string API { get; private set; }
     public static string Caching { get; private set; }
     public static string Core { get; private set; }
-    public static string Dto { get; private set; }
     public static string Repository { get; private set; }
     public static string Service { get; private set; }
     public static string Web { get; private set; }
@@ -34,6 +33,7 @@ public static class CustomConfig
     public static string DtoTemplate { get; private set; }
     public static string ConfigurationTemplate { get; private set; }
     public static string ApiControllerTemplate { get; private set; }
+    public static string ApiControllerWithSingleDtoTemplate { get; private set; }
 
 
     public static void ConfigLoad()
@@ -53,7 +53,6 @@ public static class CustomConfig
             API = config.API;
             Caching = config.Caching;
             Core = config.Core;
-            Dto = config.Dto;
             Repository = config.Repository;
             Service = config.Service;
             Web = config.Web;
@@ -79,6 +78,9 @@ public static class CustomConfig
 
             string ControllerFilePath = Path.Combine(projectDirectory, @"..\..\..\Templates\ApiControllerTemplate.txt");
             ApiControllerTemplate = File.ReadAllText(ControllerFilePath);
+
+            string ControllerWithSingleFilePath = Path.Combine(projectDirectory, @"..\..\..\Templates\ApiControllerTemplateWithSingleDto.txt");
+            ApiControllerWithSingleDtoTemplate= File.ReadAllText(ControllerWithSingleFilePath);
 
         }
         catch (Exception ex)

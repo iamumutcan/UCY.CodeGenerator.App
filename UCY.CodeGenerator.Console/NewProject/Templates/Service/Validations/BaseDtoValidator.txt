@@ -1,0 +1,15 @@
+using FluentValidation;
+using {{ProjectName}}{{CoreLayer}}.DTOs;
+
+namespace {{ProjectName}}{{ServiceLayer}}.Validations;
+
+public class BaseDtoValidator : AbstractValidator<BaseDto>
+{
+    public BaseDtoValidator()
+    {
+        /* 
+         Example
+        RuleFor(x => x.Id).NotEmpty().WithMessage("{PropertyName} is required").NotNull().WithMessage("{PropertyName} is required");
+        */
+    }
+}

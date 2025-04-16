@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="NewProject\Templates\API\Modules\" />
     <Folder Include="NewProject\Templates\API\Middlewares\" />
     <Folder Include="NewProject\Templates\API\Filters\" />
     <Folder Include="NewProject\Templates\API\Controllers\" />

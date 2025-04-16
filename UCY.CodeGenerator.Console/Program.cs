@@ -10,6 +10,7 @@ while (true)
 {
     Console.WriteLine("[1] => Create New Project");
     Console.WriteLine("[2] => Create New API");
+    Console.WriteLine("[3] => Update DTO");
     Console.WriteLine("[x] => Exit");
 
     string menuSelect = Console.ReadLine();
@@ -23,6 +24,11 @@ while (true)
     {
         ModelToService modelToService = new ModelToService();
         modelToService.StartGenerator();
+    }
+    else if (menuSelect == "3")
+    {
+        ModelToService modelToService = new ModelToService();
+        modelToService.UpdateDtoGenerator();
     }
     else if (menuSelect.ToLower() == "x")
     {

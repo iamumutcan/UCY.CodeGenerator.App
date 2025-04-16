@@ -21,7 +21,6 @@ public class Generator
         string generatorCode = CustomConfig.IRepositoryTemplate
             .Replace("{{ProjectName}}", CustomConfig.ProjectName)
             .Replace("{{CoreLayer}}", CustomConfig.Core)
-            .Replace("{{DtoLayer}}", CustomConfig.Dto)
             .Replace("{{APILayer}}", CustomConfig.API)
             .Replace("{{RepositoryLayer}}", CustomConfig.Repository)
             .Replace("{{ServiceLayer}}", CustomConfig.Service)
@@ -38,7 +37,6 @@ public class Generator
         string generatorCode = CustomConfig.IServiceTemplate
             .Replace("{{ProjectName}}", CustomConfig.ProjectName)
             .Replace("{{CoreLayer}}", CustomConfig.Core)
-            .Replace("{{DtoLayer}}", CustomConfig.Dto)
             .Replace("{{APILayer}}", CustomConfig.API)
             .Replace("{{RepositoryLayer}}", CustomConfig.Repository)
             .Replace("{{ServiceLayer}}", CustomConfig.Service)
@@ -55,7 +53,6 @@ public class Generator
         string generatorCode = CustomConfig.RepositoryTemplate
             .Replace("{{ProjectName}}", CustomConfig.ProjectName)
             .Replace("{{CoreLayer}}", CustomConfig.Core)
-            .Replace("{{DtoLayer}}", CustomConfig.Dto)
             .Replace("{{APILayer}}", CustomConfig.API)
             .Replace("{{RepositoryLayer}}", CustomConfig.Repository)
             .Replace("{{ServiceLayer}}", CustomConfig.Service)
@@ -72,7 +69,6 @@ public class Generator
         string generatorCode = CustomConfig.ServiceTemplate
             .Replace("{{ProjectName}}", CustomConfig.ProjectName)
             .Replace("{{CoreLayer}}", CustomConfig.Core)
-            .Replace("{{DtoLayer}}", CustomConfig.Dto)
             .Replace("{{APILayer}}", CustomConfig.API)
             .Replace("{{RepositoryLayer}}", CustomConfig.Repository)
             .Replace("{{ServiceLayer}}", CustomConfig.Service)
@@ -84,12 +80,20 @@ public class Generator
         Directory.CreateDirectory(Path.GetDirectoryName(generatorPath));
         File.WriteAllText(generatorPath, generatorCode);
     }
-    public void ApiControllerGenerator()
+    public void ApiControllerGenerator(int type)
     {
-        string generatorCode = CustomConfig.ApiControllerTemplate
+        // multi dto or single dto control
+        string template;
+        if (type == 1){
+            template = CustomConfig.ApiControllerTemplate;
+        }
+        else{
+            template = CustomConfig.ApiControllerWithSingleDtoTemplate;
+        }
+
+        string generatorCode = template
             .Replace("{{ProjectName}}", CustomConfig.ProjectName)
             .Replace("{{CoreLayer}}", CustomConfig.Core)
-            .Replace("{{DtoLayer}}", CustomConfig.Dto)
             .Replace("{{APILayer}}", CustomConfig.API)
             .Replace("{{RepositoryLayer}}", CustomConfig.Repository)
             .Replace("{{ServiceLayer}}", CustomConfig.Service)
@@ -112,6 +116,10 @@ public class Generator
         DtoGenerator(properties, name + "\\Request", name + "UpdateRequest");
         DtoGenerator(properties, name + "\\Request", name + "ListRequest");
     }
+    public void DtoGeneratorSingle(List<ModelProperty> properties, string name)
+    {
+        DtoGenerator(properties, name , name);
+    }
     public void ConfigurationGenerator()
     {
         string ModelNamePluralize = Helper.Pluralize(CustomConfig.ModelName);
@@ -119,7 +127,6 @@ public class Generator
         string generatorCode = CustomConfig.ConfigurationTemplate
             .Replace("{{ProjectName}}", CustomConfig.ProjectName)
             .Replace("{{CoreLayer}}", CustomConfig.Core)
-            .Replace("{{DtoLayer}}", CustomConfig.Dto)
             .Replace("{{APILayer}}", CustomConfig.API)
             .Replace("{{RepositoryLayer}}", CustomConfig.Repository)
             .Replace("{{ServiceLayer}}", CustomConfig.Service)
@@ -143,7 +150,6 @@ public class Generator
             .Replace("{{DtoPropList}}", DtoPropList)
             .Replace("{{ProjectName}}", CustomConfig.ProjectName)
             .Replace("{{CoreLayer}}", CustomConfig.Core)
-            .Replace("{{DtoLayer}}", CustomConfig.Dto)
             .Replace("{{APILayer}}", CustomConfig.API)
             .Replace("{{RepositoryLayer}}", CustomConfig.Repository)
             .Replace("{{ServiceLayer}}", CustomConfig.Service)
@@ -213,7 +219,10 @@ public class Generator
         AddModelToMapProfile(modelName, modelName + "CreateRequest");
         AddModelToMapProfile(modelName, modelName + "UpdateRequest");
         AddModelToMapProfile(modelName, modelName + "ListRequest");
-
+    }
+    public void AddModelToMapProfileSingle(string modelName)
+    {
+        AddModelToMapProfile(modelName, modelName);
     }
     public void AddModelToMapProfile(string modelName, string dtoModelName)
     {

@@ -1,4 +1,7 @@
-namespace {{ProjectName}}{{DtoLayer}}.DTOs
+using {{ProjectName}}{{CoreLayer}}.Model;
+using {{ProjectName}}{{CoreLayer}}.Enums;
+
+namespace {{ProjectName}}{{CoreLayer}}.DTOs
 {
     public class {{ModelName}}Dto : BaseDto
     {

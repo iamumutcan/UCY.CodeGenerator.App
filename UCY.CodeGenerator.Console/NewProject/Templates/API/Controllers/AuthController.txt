@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Identity;
 using {{ProjectName}}{{APILayer}}.Filters;
-using {{ProjectName}}{{DtoLayer}}.DTOs;
+using {{ProjectName}}{{APILayer}}.Modules;
+using {{ProjectName}}{{CoreLayer}}.DTOs;
 using {{ProjectName}}{{CoreLayer}}.Model;
 using {{ProjectName}}{{CoreLayer}}.Services;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,85 +17,46 @@ namespace {{ProjectName}}{{APILayer}}.Controllers;
 
 public class AuthController : CustomBaseController
 {
-    private readonly IMapper _mapper;
-    private readonly IUserService _service;
-    private readonly IUserRoleService _userRoleService;
-    private readonly JwtSettings _jwtSettings;
+    private readonly UserManager<IdentityUser> _userManager; // IdentityUser kullanýlýyor
+    private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly TokenService _tokenService;
 
-    public AuthController(IMapper mapper, IUserService service, IOptions<JwtSettings> jwtSettings, IUserRoleService userRoleService)
+    public AuthController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, TokenService tokenService)
     {
-        _service = service;
-        _mapper = mapper;
-        _jwtSettings = jwtSettings.Value;
-        _userRoleService = userRoleService;
+        _userManager = userManager;
+        _signInManager = signInManager;
+        _tokenService = tokenService;
     }
 
-
-    [AllowAnonymous]
-    [HttpGet("UserRole")] // Updated route to avoid conflict
-    public async Task<IActionResult> UserRole(int id)
+    [HttpPost("register")]
+    public async Task<IActionResult> Register(string email, string password)
     {
-        var item = await _service.GetUserWithUserrolesAsync(id);
-      //  var a = JsonConvert.SerializeObject(item);
-        var itemsDtos = _mapper.Map<UserWithRolesDto>(item);
-        return CreateActionResult(CustomResponseDto<UserWithRolesDto>.Success(200, itemsDtos));
-    }
-    [AllowAnonymous]
-    [HttpPost("Register")] 
-    public async Task<IActionResult> Register(RegisterRequestDto itemDto)
-    {
-        var item = await _service.AddAsync(_mapper.Map<User>(itemDto));
-        var itemsDtos = _mapper.Map<UserDto>(item);
-        return CreateActionResult(CustomResponseDto<UserDto>.Success(201, itemsDtos));
-    }
-
-    [AllowAnonymous]
-    [HttpPost("Login")] 
-    public async Task<IActionResult> Login(AuthLoginRequestDto user)
-    {
-        var authenticatedUser = await _service.Login(_mapper.Map<User>(user));
-
-        if (authenticatedUser == null)
+        var user = new IdentityUser { UserName = email, Email = email };
+        var result = await _userManager.CreateAsync(user, password);
+        if (result.Succeeded)
         {
-            return Unauthorized("Invalid credentials");
+            return Ok("Kayýt baþarýlý");
         }
-        var token = await CreateToken(authenticatedUser);
-        return CreateActionResult(CustomResponseDto<string>.Success(200, token));
+        return BadRequest(result.Errors);
     }
 
-    private async Task<string> CreateToken(User user)
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
-        if (_jwtSettings.Key == null) throw new Exception("Jwt is not nullable");
+        var user = await _userManager.FindByEmailAsync(request.Email);
+        if (user == null) return Unauthorized("Kullanýcý bulunamadý");
 
-        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
-        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+        var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
+        if (!result.Succeeded) return Unauthorized("Þifre yanlýþ");
 
-        var roles = await _userRoleService.GetUserRoleListAsync(user.Id);
+        var accessToken = _tokenService.CreateJwtToken(user);
+        var refreshToken = _tokenService.GenerateRefreshToken();
 
-        var claimList = new List<Claim>
+        return Ok(new
         {
-            new Claim(ClaimTypes.NameIdentifier, user.Email)
-        };
-
-        foreach (var role in roles)
-        {
-            claimList.Add(new Claim(ClaimTypes.Role, role)); 
-        }
-
-        var token = new JwtSecurityToken(
-            _jwtSettings.Issuer,
-            _jwtSettings.Audience,
-            claimList,
-            expires: DateTime.Now.AddHours(2),
-            signingCredentials: credentials);
-
-        return new JwtSecurityTokenHandler().WriteToken(token);
-    }
-
-  
-    private User TokenCheck(User user)
-    {
-        return user;
+            Token = accessToken,
+            RefreshToken = refreshToken
+        });
     }
 
 

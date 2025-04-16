@@ -17,7 +17,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class, IBase
     }
     public async Task AddAsync(T entity)
     {
-        entity.CreatedDate = DateTime.Now;
+        entity.CreatedDate = DateTime.UtcNow;
         await _dbSet.AddAsync(entity);
 
     }
@@ -44,7 +44,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class, IBase
 
     public void Remove(T entity)
     {
-
+        entity.UpdatedDate = DateTime.UtcNow;
         _dbSet.Remove(entity);
     }
 
@@ -55,7 +55,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class, IBase
 
     public void Update(T entity)
     {
-        entity.UpdatedDate = DateTime.Now;
+        entity.UpdatedDate = DateTime.UtcNow;
         _dbSet.Update(entity);
     }
 

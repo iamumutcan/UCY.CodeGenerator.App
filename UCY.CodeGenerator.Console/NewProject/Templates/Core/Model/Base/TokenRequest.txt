@@ -1,0 +1,6 @@
+namespace {{ProjectName}}{{CoreLayer}}.Model;
+
+public class TokenRequest
+{
+    public string RefreshToken { get; set; }
+}

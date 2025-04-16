@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Reflection.Emit;
 using UCY.CodeGenerator.Console.Config;
 
 namespace UCY.CodeGenerator.Console.NewProject
@@ -20,43 +21,48 @@ namespace UCY.CodeGenerator.Console.NewProject
         {
             string _TemplatesPath = AppDomain.CurrentDomain.BaseDirectory;
             TemplatesPath = Path.Combine(_TemplatesPath, @"..\..\..\NewProject\Templates");
-            DtoPathLoad();
             CorePathLoad();
             RepositoryPathLoad();
             SerivcePathLoad();
             APIPathLoad();
         }
-        public void DtoPathLoad()
-        {
-            Templates.Clear();
-            // File names and directories
-            var dtoFiles = new[] { "BaseDto", "CustomResponseDto", "NoContentDto", "PaginationDto", "UserDto", "AuthLoginRequestDto", "RegisterRequestDto", "RegisterResponseDto", "UserWithRolesDto" };
-            // Load all templates
-            LoadFiles(dtoFiles, "Dto", "DTos\\Base");
-            LoadFiles(dtoFiles, "Dto", "DTos\\User\\Request");
-            LoadFiles(dtoFiles, "Dto", "DTos\\User\\Response");
-            LoadFiles(dtoFiles, "Dto", "DTos\\Auth\\Request");
-            LoadFiles(dtoFiles, "Dto", "DTos\\Auth\\Response");
-            foreach (var selectedTemplate in Templates)
-            {
-                BaseClassGenerator(selectedTemplate.Value, selectedTemplate.FullPath());
 
-            }
-        }
         public void CorePathLoad()
         {
             Templates.Clear();
             // File names and directories
+            var dtoFiles = new[] { "BaseDto", "CustomResponseDto", "NoContentDto", "PaginationDto" };
+            var basemodelFiles = new[] { "BaseEntity", "IBaseEntity", "JwtSettings", "PaginationModel", "LoginRequest", "RegisterRequest", "TokenRequest" };
+            var repositoryFiles = new[] { "IGenericRepository"};
+            var serviceFiles = new[] { "IService" };
+            var unitOfWorkFiles = new[] { "IUnitOfWork" };
+            var enumFiles = new[] { "ExampleStatus" };
+
+            /*
+               var dtoFiles = new[] { "BaseDto", "CustomResponseDto", "NoContentDto", "PaginationDto", "UserDto", "AuthLoginRequestDto", "RegisterRequestDto", "RegisterResponseDto", "UserWithRolesDto" };
             var modelFiles = new[] { "BaseEntity", "IBaseEntity", "JwtSettings", "PaginationModel", "User", "UserRole","Role" };
             var repositoryFiles = new[] { "IGenericRepository", "IUserRepository" , "IUserRoleRepository" };
             var serviceFiles = new[] { "IService", "IUserService", "IUserRoleService" };
             var unitOfWorkFiles = new[] { "IUnitOfWork" };
+            var enumFiles = new[] { "ExampleStatus" };
+             */
+            string path = Path.Combine(CustomConfig.ProjectFilePath, CustomConfig.ProjectName + ".Core", "Enums");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
 
             // Load all templates
-            LoadFiles(modelFiles, "Core", "Model");
+            LoadFiles(dtoFiles, "Core", "DTos\\Base");
+            //LoadFiles(dtoFiles, "Core", "DTos\\User\\Request");
+            //LoadFiles(dtoFiles, "Core", "DTos\\User\\Response");
+            LoadFiles(dtoFiles, "Core", "DTos\\Auth\\Request");
+            LoadFiles(dtoFiles, "Core", "DTos\\Auth\\Response");
+            LoadFiles(basemodelFiles, "Core", "Model\\Base");
             LoadFiles(repositoryFiles, "Core", "Repositories");
             LoadFiles(serviceFiles, "Core", "Services");
             LoadFiles(unitOfWorkFiles, "Core", "UnitOfWorks");
+            LoadFiles(enumFiles, "Core", "Enums");
             foreach (var selectedTemplate in Templates) {
                 BaseClassGenerator(selectedTemplate.Value,selectedTemplate.FullPath());
 
@@ -66,7 +72,8 @@ namespace UCY.CodeGenerator.Console.NewProject
         {
             Templates.Clear();
             // File names and directories
-            var repositoriesFiles = new[] { "GenericRepository", "UserRepository", "UserRoleRepository" };
+            //var repositoriesFiles = new[] { "GenericRepository", "UserRepository", "UserRoleRepository" };
+            var repositoriesFiles = new[] { "GenericRepository" };
             var unitOfWorksFiles = new[] { "UnitOfWork" };
             var baseRepositoryFiles = new[] { "AppDbContext" };
 
@@ -87,8 +94,9 @@ namespace UCY.CodeGenerator.Console.NewProject
             // File names and directories
             var exceptionsFiles = new[] { "AuthorizationException", "ClientSideException" , "NotFoundExcepiton" };
             var mappingFiles = new[] { "MapProfile" };
-            var serviceFiles = new[] { "Service", "UserService", "UserRoleService" };
-            var validationsFiles = new[] { "UserDtoValidator" };
+            //  var serviceFiles = new[] { "Service", "UserService", "UserRoleService" };
+            var serviceFiles = new[] { "Service"};
+            var validationsFiles = new[] { "BaseDtoValidator" };
 
             // Load all templates
             LoadFiles(exceptionsFiles, "Service", "Exceptions");
@@ -130,10 +138,11 @@ namespace UCY.CodeGenerator.Console.NewProject
         {
             Templates.Clear();
             // File names and directories
-            var controllersFiles = new[] { "CustomBaseController", "UserController", "AuthController" };
+            //var controllersFiles = new[] { "CustomBaseController", "UserController", "AuthController" };
+            var controllersFiles = new[] { "CustomBaseController", "AuthController" };
             var filtersFiles = new[] { "NotFoundFilter", "ValidateFilterAttribute" };
             var middlewaresFiles = new[] { "UseCustomExceptionHandler" };
-            var modulesFiles = new[] { "RepoServiceModule" };
+            var modulesFiles = new[] { "RepoServiceModule", "LoginRequest", "JwtSettings", "TokenService" };
             var baseRepositoryFiles = new[] { "Program" };
 
             // Load all templates
@@ -155,7 +164,6 @@ namespace UCY.CodeGenerator.Console.NewProject
             string generatorCode = _template
                 .Replace("{{ProjectName}}", CustomConfig.ProjectName)
                 .Replace("{{CoreLayer}}", CustomConfig.Core)
-                .Replace("{{DtoLayer}}", CustomConfig.Dto)
                 .Replace("{{APILayer}}", CustomConfig.API)
                 .Replace("{{RepositoryLayer}}", CustomConfig.Repository)
                 .Replace("{{ServiceLayer}}", CustomConfig.Service)

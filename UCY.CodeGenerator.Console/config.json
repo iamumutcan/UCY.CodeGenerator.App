@@ -1,10 +1,9 @@
 ﻿{
-  "ProjectName": "xnew",
-  "ProjectFilePath": "C:\\ProjeDizini\\xnew",
+  "ProjectName": "TederikciPortaliDemo",
+  "ProjectFilePath": "C:\\ProjeDizini\\TederikciPortaliDemoX",
   "API": ".API",
   "Caching": ".Caching",
   "Core": ".Core",
-  "Dto": ".Dto",
   "Repository": ".Repository",
   "Service": ".Service",
   "Web": ".Web"

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using {{ProjectName}}{{APILayer}}.Filters;
-using {{ProjectName}}{{DtoLayer}}.DTOs;
+using {{ProjectName}}{{CoreLayer}}.DTOs;
 using {{ProjectName}}{{CoreLayer}}.Model;
 using {{ProjectName}}{{CoreLayer}}.Services;
 using System.IdentityModel.Tokens.Jwt;

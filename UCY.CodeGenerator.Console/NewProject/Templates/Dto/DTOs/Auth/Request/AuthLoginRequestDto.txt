@@ -1,7 +1,0 @@
-namespace {{ProjectName}}{{DtoLayer}}.DTOs;
-
-public class AuthLoginRequestDto
-{
-    public string Email { get; set; }
-    public string PasswordHash { get; set; }
-}

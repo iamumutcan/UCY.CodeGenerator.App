@@ -4,6 +4,7 @@ using {{ProjectName}}{{CoreLayer}}.Model;
 using {{ProjectName}}{{CoreLayer}}.Repositories;
 using {{ProjectName}}{{CoreLayer}}.Services;
 using {{ProjectName}}{{CoreLayer}}.UnitOfWorks;
+using {{ProjectName}}{{CoreLayer}}.DTOs;
 using {{ProjectName}}{{ServiceLayer}}.Exceptions;
 
 namespace {{ProjectName}}{{ServiceLayer}}.Services;
@@ -20,7 +21,7 @@ public class UserService : Service<User>, IUserService
         _userRepository = userRepository;
         _userRoleRepository = userRoleRepository;
     }
-    public async Task<User> Login(User user)
+    public async Task<User> Login(AuthLoginRequestDto user)
     {
         var data = await _userRepository
             .Where(x => x.Email == user.Email && x.PasswordHash == user.PasswordHash)

@@ -57,7 +57,6 @@ public class ProjectManager
         CreateProject(_config.ProjectName, projectDirectory, _config.API, "webapi", true, GetAPIReferences());
         CreateProject(_config.ProjectName, projectDirectory, _config.Caching, "classlib", false, GetCachingReferences());
         CreateProject(_config.ProjectName, projectDirectory, _config.Core, "classlib", false, null);
-        CreateProject(_config.ProjectName, projectDirectory, _config.Dto, "classlib", false, null);
         CreateProject(_config.ProjectName, projectDirectory, _config.Repository, "classlib", false, GetRepositoryReferences());
         CreateProject(_config.ProjectName, projectDirectory, _config.Service, "classlib", false, GetServiceReferences());
         CreateProject(_config.ProjectName, projectDirectory, _config.Web, "mvc", true, GetWebReferences());
@@ -89,7 +88,7 @@ public class ProjectManager
             Directory.CreateDirectory(layerPath);
             Log($"{projectName}{layerName} layer created: {layerPath}");
 
-            string dotnetNewCmd = $"dotnet new {projectType} -n {projectName}{layerName} -o \"{layerPath}\"";
+            string dotnetNewCmd = $"dotnet new {projectType} -n {projectName}{layerName} -o \"{layerPath}\" -f net8.0"; // .NET 8 sürümü eklendi
             RunCommand(dotnetNewCmd);
 
             string dotnetSlnCmd = $"dotnet sln \"{basePath}\\{projectName}.sln\" add \"{layerPath}\\{projectName}{layerName}.csproj\"";
@@ -123,12 +122,12 @@ public class ProjectManager
         return $@"
   <ItemGroup>
      <PackageReference Include=""Autofac.Extensions.DependencyInjection"" Version=""9.0.0"" />
-    <PackageReference Include=""Microsoft.AspNetCore.Authentication.JwtBearer"" Version=""8.0.8"" />
-    <PackageReference Include=""Microsoft.EntityFrameworkCore.Design"" Version=""8.0.8"">
+    <PackageReference Include=""Microsoft.AspNetCore.Authentication.JwtBearer"" Version=""8.0.11"" />
+    <PackageReference Include=""Microsoft.EntityFrameworkCore.Design"" Version=""8.0.11"">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include=""Microsoft.EntityFrameworkCore.InMemory"" Version=""8.0.8"" />
+    <PackageReference Include=""Microsoft.EntityFrameworkCore.InMemory"" Version=""8.0.11"" />
     <PackageReference Include=""Microsoft.IdentityModel.Tokens"" Version=""8.0.2"" />
     <PackageReference Include=""Swashbuckle.AspNetCore"" Version=""6.7.1"" />
     <PackageReference Include=""System.IdentityModel.Tokens.Jwt"" Version=""8.0.2"" />
@@ -148,9 +147,9 @@ public class ProjectManager
     {
         return $@"
   <ItemGroup>
-    <PackageReference Include=""Microsoft.EntityFrameworkCore"" Version=""8.0.8"" />
-    <PackageReference Include=""Microsoft.EntityFrameworkCore.SqlServer"" Version=""8.0.8"" />
-    <PackageReference Include=""Microsoft.EntityFrameworkCore.Tools"" Version=""8.0.8"" />
+    <PackageReference Include=""Microsoft.AspNetCore.Identity.EntityFrameworkCore"" Version=""8.0.11"" />
+    <PackageReference Include=""Microsoft.EntityFrameworkCore.SqlServer"" Version=""8.0.11"" />
+    <PackageReference Include=""Microsoft.EntityFrameworkCore.Tools"" Version=""8.0.11"" />
     <ProjectReference Include=""..\{_config.ProjectName}{_config.Core}\{_config.ProjectName}{_config.Core}.csproj"" />
   </ItemGroup>";
     }
@@ -162,19 +161,13 @@ public class ProjectManager
     <PackageReference Include=""AutoMapper.Extensions.Microsoft.DependencyInjection"" Version=""12.0.1"" />
     <PackageReference Include=""FluentValidation.AspNetCore"" Version=""11.3.0"" />
     <ProjectReference Include=""..\{_config.ProjectName}{_config.Core}\{_config.ProjectName}{_config.Core}.csproj"" />
-    <ProjectReference Include=""..\{_config.ProjectName}{_config.Dto}\{_config.ProjectName}{_config.Dto}.csproj"" />
     <ProjectReference Include=""..\{_config.ProjectName}{_config.Repository}\{_config.ProjectName}{_config.Repository}.csproj"" />
   </ItemGroup>";
     }
 
     private string GetWebReferences()
     {
-        return $@"
-              <ItemGroup>
-                <PackageReference Include=""AutoMapper.Extensions.Microsoft.DependencyInjection"" Version=""12.0.1"" />
-                <ProjectReference Include=""..\{_config.ProjectName}{_config.Core}\{_config.ProjectName}{_config.Core}.csproj"" />
-                <ProjectReference Include=""..\{_config.ProjectName}{_config.Dto}\{_config.ProjectName}{_config.Dto}.csproj"" />
-              </ItemGroup>";
+        return null; // Web için özel bir referans eklenmeyecekse null dönebilirsiniz
     }
 
     private void RunCommand(string command)
