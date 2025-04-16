@@ -1,7 +1,5 @@
-﻿using System.Diagnostics;
-using Newtonsoft.Json;
-using System;
-using System.IO; // File için gerekli
+﻿using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace UCY.CodeGenerator.Console.NewProject;
 

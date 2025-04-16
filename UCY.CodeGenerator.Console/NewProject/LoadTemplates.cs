@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using System.Reflection.Emit;
-using UCY.CodeGenerator.Console.Config;
+﻿using UCY.CodeGenerator.Console.Config;
 
 namespace UCY.CodeGenerator.Console.NewProject
 {
@@ -33,7 +28,7 @@ namespace UCY.CodeGenerator.Console.NewProject
             // File names and directories
             var dtoFiles = new[] { "BaseDto", "CustomResponseDto", "NoContentDto", "PaginationDto" };
             var basemodelFiles = new[] { "BaseEntity", "IBaseEntity", "JwtSettings", "PaginationModel", "LoginRequest", "RegisterRequest", "TokenRequest" };
-            var repositoryFiles = new[] { "IGenericRepository"};
+            var repositoryFiles = new[] { "IGenericRepository" };
             var serviceFiles = new[] { "IService" };
             var unitOfWorkFiles = new[] { "IUnitOfWork" };
             var enumFiles = new[] { "ExampleStatus" };
@@ -63,8 +58,9 @@ namespace UCY.CodeGenerator.Console.NewProject
             LoadFiles(serviceFiles, "Core", "Services");
             LoadFiles(unitOfWorkFiles, "Core", "UnitOfWorks");
             LoadFiles(enumFiles, "Core", "Enums");
-            foreach (var selectedTemplate in Templates) {
-                BaseClassGenerator(selectedTemplate.Value,selectedTemplate.FullPath());
+            foreach (var selectedTemplate in Templates)
+            {
+                BaseClassGenerator(selectedTemplate.Value, selectedTemplate.FullPath());
 
             }
         }
@@ -92,10 +88,10 @@ namespace UCY.CodeGenerator.Console.NewProject
         {
             Templates.Clear();
             // File names and directories
-            var exceptionsFiles = new[] { "AuthorizationException", "ClientSideException" , "NotFoundExcepiton" };
+            var exceptionsFiles = new[] { "AuthorizationException", "ClientSideException", "NotFoundExcepiton" };
             var mappingFiles = new[] { "MapProfile" };
             //  var serviceFiles = new[] { "Service", "UserService", "UserRoleService" };
-            var serviceFiles = new[] { "Service"};
+            var serviceFiles = new[] { "Service" };
             var validationsFiles = new[] { "BaseDtoValidator" };
 
             // Load all templates
@@ -104,27 +100,27 @@ namespace UCY.CodeGenerator.Console.NewProject
             LoadFiles(serviceFiles, "Service", "Services");
             LoadFiles(validationsFiles, "Service", "Validations");
 
-            foreach (var selectedTemplate in Templates) 
+            foreach (var selectedTemplate in Templates)
             {
                 BaseClassGenerator(selectedTemplate.Value, selectedTemplate.FullPath());
             }
             Directory.CreateDirectory(Path.GetDirectoryName($"{CustomConfig.ProjectFilePath}\\{CustomConfig.ProjectName}{CustomConfig.Service}\\Validations"));
 
         }
-        private void LoadFiles(IEnumerable<string> fileNames,string layer, string folder)
+        private void LoadFiles(IEnumerable<string> fileNames, string layer, string folder)
         {
             foreach (var fileName in fileNames)
             {
                 string filePath;
-                if (layer==null || layer=="") filePath = Path.Combine(TemplatesPath, folder, $"{fileName}.txt");
-                else  filePath = Path.Combine(TemplatesPath, layer+"\\"+folder, $"{fileName}.txt");
+                if (layer == null || layer == "") filePath = Path.Combine(TemplatesPath, folder, $"{fileName}.txt");
+                else filePath = Path.Combine(TemplatesPath, layer + "\\" + folder, $"{fileName}.txt");
                 if (File.Exists(filePath))
                 {
                     LoadTemplateBaseClass loadTemplateBaseClass = new LoadTemplateBaseClass();
                     loadTemplateBaseClass.Name = fileName;
-                    loadTemplateBaseClass.Value= File.ReadAllText(filePath);
+                    loadTemplateBaseClass.Value = File.ReadAllText(filePath);
                     loadTemplateBaseClass.Layer = layer;
-                    loadTemplateBaseClass.Path=folder;
+                    loadTemplateBaseClass.Path = folder;
                     Templates.Add(loadTemplateBaseClass);
                 }
                 else
@@ -180,12 +176,12 @@ namespace UCY.CodeGenerator.Console.NewProject
     {
         public string Name { get; set; }
         public string Value { get; set; }
-        public string Layer {  get; set; }
+        public string Layer { get; set; }
         public string Path { get; set; }
         public string FullPath()
         {
             string fullpath;
-            if (Layer == null || Layer=="") fullpath = $"{CustomConfig.ProjectFilePath}\\{CustomConfig.ProjectName}.{this.Layer}\\{this.Name}.cs";
+            if (Layer == null || Layer == "") fullpath = $"{CustomConfig.ProjectFilePath}\\{CustomConfig.ProjectName}.{this.Layer}\\{this.Name}.cs";
             else fullpath = $"{CustomConfig.ProjectFilePath}\\{CustomConfig.ProjectName}.{this.Layer}\\{this.Path}\\{this.Name}.cs";
             return fullpath;
         }

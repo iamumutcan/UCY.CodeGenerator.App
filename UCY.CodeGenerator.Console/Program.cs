@@ -33,7 +33,7 @@ while (true)
     else if (menuSelect.ToLower() == "x")
     {
         Console.WriteLine("Exiting program...");
-        break; 
+        break;
     }
     else
     {

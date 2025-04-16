@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UCY.CodeGenerator.Console.Config;
 
@@ -80,7 +75,7 @@ public static class CustomConfig
             ApiControllerTemplate = File.ReadAllText(ControllerFilePath);
 
             string ControllerWithSingleFilePath = Path.Combine(projectDirectory, @"..\..\..\Templates\ApiControllerTemplateWithSingleDto.txt");
-            ApiControllerWithSingleDtoTemplate= File.ReadAllText(ControllerWithSingleFilePath);
+            ApiControllerWithSingleDtoTemplate = File.ReadAllText(ControllerWithSingleFilePath);
 
         }
         catch (Exception ex)

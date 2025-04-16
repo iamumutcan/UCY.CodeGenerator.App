@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using UCY.CodeGenerator.Console.Config;
+﻿using UCY.CodeGenerator.Console.Config;
 
 namespace UCY.CodeGenerator.Console.Generator;
 public class Generator
@@ -84,10 +77,12 @@ public class Generator
     {
         // multi dto or single dto control
         string template;
-        if (type == 1){
+        if (type == 1)
+        {
             template = CustomConfig.ApiControllerTemplate;
         }
-        else{
+        else
+        {
             template = CustomConfig.ApiControllerWithSingleDtoTemplate;
         }
 
@@ -105,20 +100,20 @@ public class Generator
         Directory.CreateDirectory(Path.GetDirectoryName(generatorPath));
         File.WriteAllText(generatorPath, generatorCode);
     }
-    public void DtoGeneratorMulti(List<ModelProperty> properties,string name)
+    public void DtoGeneratorMulti(List<ModelProperty> properties, string name)
     {
-        DtoGenerator(properties, name + "\\Response", name+ "Response");
+        DtoGenerator(properties, name + "\\Response", name + "Response");
         DtoGenerator(properties, name + "\\Response", name + "CreatedResponse");
         DtoGenerator(properties, name + "\\Response", name + "UpdatedResponse");
         DtoGenerator(properties, name + "\\Response", name + "ListedResponse");
-        DtoGenerator(properties, name + "\\Request", name+ "Request");
+        DtoGenerator(properties, name + "\\Request", name + "Request");
         DtoGenerator(properties, name + "\\Request", name + "CreateRequest");
         DtoGenerator(properties, name + "\\Request", name + "UpdateRequest");
         DtoGenerator(properties, name + "\\Request", name + "ListRequest");
     }
     public void DtoGeneratorSingle(List<ModelProperty> properties, string name)
     {
-        DtoGenerator(properties, name , name);
+        DtoGenerator(properties, name, name);
     }
     public void ConfigurationGenerator()
     {
@@ -139,7 +134,7 @@ public class Generator
         Directory.CreateDirectory(Path.GetDirectoryName(generatorPath));
         File.WriteAllText(generatorPath, generatorCode);
     }
-    public void DtoGenerator(List<ModelProperty> properties,string filePath,string dtoFilename)
+    public void DtoGenerator(List<ModelProperty> properties, string filePath, string dtoFilename)
     {
         string DtoPropList = "";
         foreach (var prop in properties)
@@ -157,7 +152,7 @@ public class Generator
             .Replace("{{CachingLayer}}", CustomConfig.Caching)
             .Replace("{{modelNameLower}}", CustomConfig.ModelNameLower)
             .Replace("{{ModelName}}", dtoFilename);
-        string generatorPath = Path.Combine(corePath + "\\DTOs\\"+ filePath, $"{dtoFilename}Dto.cs");
+        string generatorPath = Path.Combine(corePath + "\\DTOs\\" + filePath, $"{dtoFilename}Dto.cs");
         Directory.CreateDirectory(Path.GetDirectoryName(generatorPath));
         File.WriteAllText(generatorPath, generatorCode);
     }
@@ -211,7 +206,7 @@ public class Generator
     }
     public void AddModelToMapProfileMulti(string modelName)
     {
-        AddModelToMapProfile(modelName, modelName+ "Response");
+        AddModelToMapProfile(modelName, modelName + "Response");
         AddModelToMapProfile(modelName, modelName + "CreatedResponse");
         AddModelToMapProfile(modelName, modelName + "UpdatedResponse");
         AddModelToMapProfile(modelName, modelName + "ListedResponse");
