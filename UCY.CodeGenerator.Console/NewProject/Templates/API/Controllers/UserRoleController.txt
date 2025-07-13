@@ -1,0 +1,83 @@
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Identity;
+using {{ProjectName}}{{APILayer}}.Filters;
+using {{ProjectName}}{{CoreLayer}}.DTOs;
+using {{ProjectName}}{{CoreLayer}}.Model;
+using {{ProjectName}}{{CoreLayer}}.Services;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+
+namespace {{ProjectName}}{{APILayer}}.Controllers
+{
+    
+    [ApiController]
+    [Route("api/[controller]")]
+    public class UserRoleController : ControllerBase
+    {
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+        public UserRoleController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        {
+            _userManager = userManager;
+            _roleManager = roleManager;
+        }
+
+        /// <summary>
+        /// Kullanýcýya rol atar.
+        /// </summary>
+        [HttpPost("assign")]
+        public async Task<IActionResult> AssignRole([FromBody] RoleAssignRequest model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null) return NotFound("Kullanýcý bulunamadý");
+
+            var roleExists = await _roleManager.RoleExistsAsync(model.Role);
+            if (!roleExists) return BadRequest("Rol mevcut deðil");
+
+            var result = await _userManager.AddToRoleAsync(user, model.Role);
+            if (!result.Succeeded) return BadRequest(result.Errors);
+
+            return Ok($"{model.Email} kullanýcýsýna '{model.Role}' rolü atandý.");
+        }
+
+        /// <summary>
+        /// Kullanýcýdan rol kaldýrýr.
+        /// </summary>
+        [HttpPost("remove")]
+        public async Task<IActionResult> RemoveRole([FromBody] RoleAssignRequest model)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null) return NotFound("Kullanýcý bulunamadý");
+
+            var result = await _userManager.RemoveFromRoleAsync(user, model.Role);
+            if (!result.Succeeded) return BadRequest(result.Errors);
+
+            return Ok($"{model.Email} kullanýcýsýndan '{model.Role}' rolü kaldýrýldý.");
+        }
+
+        /// <summary>
+        /// Kullanýcýnýn rollerini listeler.
+        /// </summary>
+        [HttpGet("get-roles")]
+        public async Task<IActionResult> GetUserRoles(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null) return NotFound("Kullanýcý bulunamadý");
+
+            var roles = await _userManager.GetRolesAsync(user);
+            return Ok(roles);
+        }
+    }
+
+    public class RoleAssignRequest
+    {
+        public string Email { get; set; }
+        public string Role { get; set; }
+    }
+}

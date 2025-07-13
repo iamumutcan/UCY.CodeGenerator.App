@@ -27,14 +27,14 @@ namespace UCY.CodeGenerator.Console.NewProject
             Templates.Clear();
             // File names and directories
             var dtoFiles = new[] { "BaseDto", "CustomResponseDto", "NoContentDto", "PaginationDto" };
-            var basemodelFiles = new[] { "BaseEntity", "IBaseEntity", "JwtSettings", "PaginationModel", "LoginRequest", "RegisterRequest", "TokenRequest" };
+            var basemodelFiles = new[] { "BaseEntity", "IBaseEntity", "JwtSettings", "PaginationModel", "LoginRequest", "RegisterRequest", "TokenRequest", "RefreshToken", "ApplicationUser" };
             var repositoryFiles = new[] { "IGenericRepository" };
             var serviceFiles = new[] { "IService" };
             var unitOfWorkFiles = new[] { "IUnitOfWork" };
             var enumFiles = new[] { "ExampleStatus" };
 
             /*
-               var dtoFiles = new[] { "BaseDto", "CustomResponseDto", "NoContentDto", "PaginationDto", "UserDto", "AuthLoginRequestDto", "RegisterRequestDto", "RegisterResponseDto", "UserWithRolesDto" };
+            var dtoFiles = new[] { "BaseDto", "CustomResponseDto", "NoContentDto", "PaginationDto", "UserDto", "AuthLoginRequestDto", "RegisterRequestDto", "RegisterResponseDto", "UserWithRolesDto" };
             var modelFiles = new[] { "BaseEntity", "IBaseEntity", "JwtSettings", "PaginationModel", "User", "UserRole","Role" };
             var repositoryFiles = new[] { "IGenericRepository", "IUserRepository" , "IUserRoleRepository" };
             var serviceFiles = new[] { "IService", "IUserService", "IUserRoleService" };
@@ -135,7 +135,7 @@ namespace UCY.CodeGenerator.Console.NewProject
             Templates.Clear();
             // File names and directories
             //var controllersFiles = new[] { "CustomBaseController", "UserController", "AuthController" };
-            var controllersFiles = new[] { "CustomBaseController", "AuthController" };
+            var controllersFiles = new[] { "CustomBaseController", "AuthController", "RoleController", "UserRoleController" };
             var filtersFiles = new[] { "NotFoundFilter", "ValidateFilterAttribute" };
             var middlewaresFiles = new[] { "UseCustomExceptionHandler" };
             var modulesFiles = new[] { "RepoServiceModule", "LoginRequest", "JwtSettings", "TokenService" };

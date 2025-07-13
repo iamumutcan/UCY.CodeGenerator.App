@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Identity;
+
 using {{ProjectName}}{{APILayer}}.Filters;
 using {{ProjectName}}{{APILayer}}.Modules;
 using {{ProjectName}}{{CoreLayer}}.DTOs;
@@ -17,11 +18,11 @@ namespace {{ProjectName}}{{APILayer}}.Controllers;
 
 public class AuthController : CustomBaseController
 {
-    private readonly UserManager<IdentityUser> _userManager; // IdentityUser kullanýlýyor
-    private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly UserManager<ApplicationUser> _userManager; // IdentityUser kullanýlýyor
+    private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly TokenService _tokenService;
 
-    public AuthController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, TokenService tokenService)
+    public AuthController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, TokenService tokenService)
     {
         _userManager = userManager;
         _signInManager = signInManager;
@@ -31,7 +32,7 @@ public class AuthController : CustomBaseController
     [HttpPost("register")]
     public async Task<IActionResult> Register(string email, string password)
     {
-        var user = new IdentityUser { UserName = email, Email = email };
+        var user = new ApplicationUser { UserName = email, Email = email };
         var result = await _userManager.CreateAsync(user, password);
         if (result.Succeeded)
         {

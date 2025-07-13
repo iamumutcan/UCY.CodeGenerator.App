@@ -1,0 +1,46 @@
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Identity;
+using {{ProjectName}}{{APILayer}}.Filters;
+using {{ProjectName}}{{CoreLayer}}.DTOs;
+using {{ProjectName}}{{CoreLayer}}.Model;
+using {{ProjectName}}{{CoreLayer}}.Services;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+
+namespace {{ProjectName}}{{APILayer}}.Controllers
+{
+    
+    [ApiController]
+    [Route("api/[controller]")]
+    public class RoleController : ControllerBase
+    {
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+        public RoleController(RoleManager<IdentityRole> roleManager)
+        {
+            _roleManager = roleManager;
+        }
+
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateRole([FromBody] string roleName)
+        {
+            if (string.IsNullOrWhiteSpace(roleName))
+                return BadRequest("Rol ismi boþ olamaz");
+
+            if (await _roleManager.RoleExistsAsync(roleName))
+                return BadRequest("Bu rol zaten mevcut");
+
+            var result = await _roleManager.CreateAsync(new IdentityRole(roleName));
+
+            if (result.Succeeded)
+                return Ok($"Rol oluþturuldu: {roleName}");
+
+            return BadRequest(result.Errors);
+        }
+    }
+}

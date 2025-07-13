@@ -54,7 +54,7 @@ public class ProjectManager
         CreateSolution(projectDirectory, _config.ProjectName);
         CreateProject(_config.ProjectName, projectDirectory, _config.API, "webapi", true, GetAPIReferences());
         CreateProject(_config.ProjectName, projectDirectory, _config.Caching, "classlib", false, GetCachingReferences());
-        CreateProject(_config.ProjectName, projectDirectory, _config.Core, "classlib", false, null);
+        CreateProject(_config.ProjectName, projectDirectory, _config.Core, "classlib", false, GetCoreReferences());
         CreateProject(_config.ProjectName, projectDirectory, _config.Repository, "classlib", false, GetRepositoryReferences());
         CreateProject(_config.ProjectName, projectDirectory, _config.Service, "classlib", false, GetServiceReferences());
         CreateProject(_config.ProjectName, projectDirectory, _config.Web, "mvc", true, GetWebReferences());
@@ -140,7 +140,13 @@ public class ProjectManager
     <ProjectReference Include=""..\{_config.ProjectName}{_config.Service}\{_config.ProjectName}{_config.Service}.csproj"" />
   </ItemGroup>";
     }
-
+    private string GetCoreReferences()
+    {
+        return $@"
+  <ItemGroup>
+        <PackageReference Include=""Microsoft.AspNetCore.Identity.EntityFrameworkCore"" Version=""8.0.11"" />
+  </ItemGroup>";
+    }
     private string GetRepositoryReferences()
     {
         return $@"
