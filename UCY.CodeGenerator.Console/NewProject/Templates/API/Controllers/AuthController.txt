@@ -1,4 +1,4 @@
-using AutoMapper;
+ï»¿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -16,9 +16,10 @@ using System.Text;
 
 namespace {{ProjectName}}{{APILayer}}.Controllers;
 
-public class AuthController : CustomBaseController
+
+public class AuthController : Controller
 {
-    private readonly UserManager<ApplicationUser> _userManager; // IdentityUser kullanýlýyor
+    private readonly UserManager<ApplicationUser> _userManager; // IdentityUser kullanï¿½lï¿½yor
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly TokenService _tokenService;
 
@@ -30,14 +31,24 @@ public class AuthController : CustomBaseController
     }
 
     [HttpPost("register")]
-    public async Task<IActionResult> Register(string email, string password)
+    public async Task<IActionResult> Register([FromBody] RegisterDto request)
     {
-        var user = new ApplicationUser { UserName = email, Email = email };
-        var result = await _userManager.CreateAsync(user, password);
+        var user = new ApplicationUser
+        {
+            UserName = request.Email,
+            Email = request.Email,
+            FirstName = request.FirstName, 
+            LastName = request.LastName    
+        };
+
+        var result = await _userManager.CreateAsync(user, request.Password);
+
         if (result.Succeeded)
         {
-            return Ok("Kayýt baþarýlý");
+            return Ok("Registration successful");
+
         }
+
         return BadRequest(result.Errors);
     }
 
@@ -45,10 +56,10 @@ public class AuthController : CustomBaseController
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
         var user = await _userManager.FindByEmailAsync(request.Email);
-        if (user == null) return Unauthorized("Kullanýcý bulunamadý");
+        if (user == null) return Unauthorized("User not found");
 
         var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
-        if (!result.Succeeded) return Unauthorized("Þifre yanlýþ");
+        if (!result.Succeeded) return Unauthorized("Incorrect password");
 
         var accessToken = _tokenService.CreateJwtToken(user);
         var refreshToken = _tokenService.GenerateRefreshToken();
