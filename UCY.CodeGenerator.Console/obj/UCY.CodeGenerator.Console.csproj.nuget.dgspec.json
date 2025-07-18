@@ -5,7 +5,7 @@
   },
   "projects": {
     "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "restore": {
         "projectUniqueName": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj",
         "projectName": "UCY.CodeGenerator.Console",

@@ -114,4 +114,11 @@ public class Service<T> : IService<T> where T : class, IBaseEntity
             Items = items
         };
     }
+    
+    public async Task<PaginationModel<T>> FilterAsync(List<FilterRequest> filters, int pageNumber, int pageSize)
+    {
+        var predicate = ExpressionBuilder.BuildPredicate<T>(filters);
+
+        return await _repository.GetPagedDataAsync(pageNumber, pageSize, predicate);
+    }
 }

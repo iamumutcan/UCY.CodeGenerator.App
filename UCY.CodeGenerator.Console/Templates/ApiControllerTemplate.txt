@@ -77,5 +77,22 @@ namespace {{ProjectName}}{{APILayer}}.Controllers
             };
             return CreateActionResult(CustomResponseDto<PaginationDto<{{ModelName}}ListedResponseDto>>.Success(200, response));
         }
+        
+        [HttpPost("filter")]
+        public async Task<IActionResult> FilterProducts([FromBody] FilterDto filter)
+        {
+            var result = await _service.FilterAsync(filter.Filters, filter.PageNumber, filter.PageSize);
+            var dtoItems = _mapper.Map<List<{{ModelName}}ResponseDto>>(result.Items);
+
+            var response = new PaginationDto<{{ModelName}}ResponseDto>
+            {
+                PageNumber = result.PageNumber,
+                PageSize = result.PageSize,
+                TotalCount = result.TotalCount,
+                Items = dtoItems
+            };
+
+            return CreateActionResult(CustomResponseDto<PaginationDto<{{ModelName}}ResponseDto>>.Success(200, response));
+        }
     }
 }

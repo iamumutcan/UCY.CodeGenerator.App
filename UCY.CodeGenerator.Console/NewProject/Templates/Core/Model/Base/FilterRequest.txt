@@ -1,0 +1,10 @@
+using System.Text.Json.Serialization;
+
+namespace {{ProjectName}}{{CoreLayer}}.Model;
+
+public class FilterRequest
+{
+    public string PropertyName { get; set; }       // example: "Price", "CreatedDate"
+    public string Operation { get; set; }          // example: "GreaterThan", "LessThanOrEqual"
+    public string Value { get; set; }              // example: "500", "2024-04-01"
+}

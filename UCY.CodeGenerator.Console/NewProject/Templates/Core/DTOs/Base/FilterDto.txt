@@ -1,0 +1,9 @@
+using {{ProjectName}}{{CoreLayer}}.Model;
+namespace {{ProjectName}}{{CoreLayer}}.DTOs;
+
+public class FilterDto
+{
+    public List<FilterRequest> Filters { get; set; } = new();
+    public int PageNumber { get; set; } = 1;
+    public int PageSize { get; set; } = 10;
+}

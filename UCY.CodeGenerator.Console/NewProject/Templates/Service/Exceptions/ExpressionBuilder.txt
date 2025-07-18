@@ -1,0 +1,42 @@
+using System.Linq.Expressions;
+using {{ProjectName}}{{CoreLayer}}.Model;
+
+namespace {{ProjectName}}{{ServiceLayer}}.Exceptions;
+
+
+public static class ExpressionBuilder
+{
+    public static Expression<Func<T, bool>> BuildPredicate<T>(List<FilterRequest> filters)
+    {
+        var parameter = Expression.Parameter(typeof(T), "x");
+        Expression combined = null;
+
+        foreach (var filter in filters)
+        {
+            var property = typeof(T).GetProperty(filter.PropertyName);
+            if (property == null) continue;
+
+            var member = Expression.Property(parameter, filter.PropertyName);
+            var convertedValue = Convert.ChangeType(filter.Value, Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType);
+            var constant = Expression.Constant(convertedValue);
+
+            Expression comparison = filter.Operation.ToLower() switch
+            {
+                "equals" => Expression.Equal(member, constant),
+                "notequals" => Expression.NotEqual(member, constant),
+                "contains" => Expression.Call(member, typeof(string).GetMethod("Contains", new[] { typeof(string) })!, constant),
+                "startswith" => Expression.Call(member, typeof(string).GetMethod("StartsWith", new[] { typeof(string) })!, constant),
+                "endswith" => Expression.Call(member, typeof(string).GetMethod("EndsWith", new[] { typeof(string) })!, constant),
+                "greaterthan" => Expression.GreaterThan(member, constant),
+                "greaterthanorequal" => Expression.GreaterThanOrEqual(member, constant),
+                "lessthan" => Expression.LessThan(member, constant),
+                "lessthanorequal" => Expression.LessThanOrEqual(member, constant),
+                _ => throw new NotSupportedException($"Unsupported operation: {filter.Operation}")
+            };
+
+            combined = combined == null ? comparison : Expression.AndAlso(combined, comparison);
+        }
+
+        return combined != null ? Expression.Lambda<Func<T, bool>>(combined, parameter) : null;
+    }
+}

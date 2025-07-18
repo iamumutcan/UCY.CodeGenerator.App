@@ -5,6 +5,9 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Version>1.1.0</Version>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +19,6 @@
     <Folder Include="NewProject\Templates\API\Middlewares\" />
     <Folder Include="NewProject\Templates\API\Filters\" />
     <Folder Include="NewProject\Templates\Repository\Configurations\" />
-    <Folder Include="NewProject\Templates\Service\Exceptions\" />
   </ItemGroup>
 
 </Project>

@@ -26,8 +26,8 @@ namespace UCY.CodeGenerator.Console.NewProject
         {
             Templates.Clear();
             // File names and directories
-            var dtoFiles = new[] { "BaseDto", "CustomResponseDto", "NoContentDto", "PaginationDto", "RegisterDto" };
-            var basemodelFiles = new[] { "BaseEntity", "IBaseEntity", "JwtSettings", "PaginationModel", "LoginRequest", "RegisterRequest", "TokenRequest", "RefreshToken", "ApplicationUser" };
+            var dtoFiles = new[] { "BaseDto",  "CustomResponseDto", "NoContentDto", "PaginationDto", "FilterDto", "RegisterDto" };
+            var basemodelFiles = new[] { "BaseEntity", "IBaseEntity", "JwtSettings","FilterRequest", "PaginationModel", "LoginRequest", "RegisterRequest", "TokenRequest", "RefreshToken", "ApplicationUser" };
             var repositoryFiles = new[] { "IGenericRepository" };
             var serviceFiles = new[] { "IService" };
             var unitOfWorkFiles = new[] { "IUnitOfWork" };
@@ -88,7 +88,7 @@ namespace UCY.CodeGenerator.Console.NewProject
         {
             Templates.Clear();
             // File names and directories
-            var exceptionsFiles = new[] { "AuthorizationException", "ClientSideException", "NotFoundExcepiton" };
+            var exceptionsFiles = new[] { "AuthorizationException", "ClientSideException", "NotFoundExcepiton", "ExpressionBuilder" };
             var mappingFiles = new[] { "MapProfile" };
             //  var serviceFiles = new[] { "Service", "UserService", "UserRoleService" };
             var serviceFiles = new[] { "Service" };

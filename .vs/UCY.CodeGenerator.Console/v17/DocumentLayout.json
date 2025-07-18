@@ -3,56 +3,48 @@
   "WorkspaceRootPath": "C:\\git\\UCY.CodeGenerator.App\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\newproject\\templates\\api\\program.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\newproject\\templates\\api\\program.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\ucy.codegenerator.console.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\ucy.codegenerator.console.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\newproject\\loadtemplates.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\newproject\\loadtemplates.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\newproject\\projectmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\newproject\\projectmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\newproject\\templates\\core\\dtos\\auth\\request\\registerdto.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\newproject\\templates\\core\\dtos\\auth\\request\\registerdto.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\newproject\\templates\\core\\dtos\\auth\\request\\authloginrequestdto.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\newproject\\templates\\core\\dtos\\auth\\request\\authloginrequestdto.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\newproject\\templates\\core\\dtos\\base\\paginationdto.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\newproject\\templates\\core\\dtos\\base\\paginationdto.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\newproject\\templates\\api\\modules\\tokenservice.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\newproject\\templates\\api\\modules\\tokenservice.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\newproject\\templates\\api\\controllers\\authcontroller.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\newproject\\templates\\api\\controllers\\authcontroller.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\config.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\config.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\templates\\apicontrollertemplatewithsingledto.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\templates\\apicontrollertemplatewithsingledto.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\templates\\apicontrollertemplate.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\templates\\apicontrollertemplate.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\newproject\\templates\\api\\controllers\\rolecontroller.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\newproject\\templates\\api\\controllers\\rolecontroller.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\generator\\modeltoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\generator\\modeltoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\newproject\\templates\\api\\controllers\\userrolecontroller.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\newproject\\templates\\api\\controllers\\userrolecontroller.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\newproject\\loadtemplates.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\newproject\\loadtemplates.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\newproject\\templates\\core\\dtos\\base\\filterdto.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\newproject\\templates\\core\\dtos\\base\\filterdto.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\newproject\\templates\\core\\model\\base\\applicationuser.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\newproject\\templates\\core\\model\\base\\applicationuser.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\newproject\\templates\\core\\model\\base\\baseentity.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\newproject\\templates\\core\\model\\base\\baseentity.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\newproject\\templates\\core\\services\\iservice.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\newproject\\templates\\core\\services\\iservice.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|c:\\git\\ucy.codegenerator.app\\ucy.codegenerator.console\\newproject\\templates\\core\\dtos\\base\\basedto.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{E54A63A3-C925-43F2-8689-F0FA8C2AA9E8}|UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj|solutionrelative:ucy.codegenerator.console\\newproject\\templates\\core\\dtos\\base\\basedto.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,20 +54,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "LoadTemplates.cs",
               "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\LoadTemplates.cs",
               "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\NewProject\\LoadTemplates.cs",
               "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\LoadTemplates.cs",
               "RelativeToolTip": "UCY.CodeGenerator.Console\\NewProject\\LoadTemplates.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAEwBwAAABwAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowC4AAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-15T13:57:45.573Z",
               "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UCY.CodeGenerator.Console",
+              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj",
+              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj",
+              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj",
+              "RelativeToolTip": "UCY.CodeGenerator.Console\\UCY.CodeGenerator.Console.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-07-18T10:54:29.905Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -95,148 +100,112 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.txt",
-              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Program.txt",
-              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Program.txt",
-              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Program.txt",
-              "RelativeToolTip": "UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Program.txt",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ApiControllerTemplateWithSingleDto.txt",
+              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\Templates\\ApiControllerTemplateWithSingleDto.txt",
+              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\Templates\\ApiControllerTemplateWithSingleDto.txt",
+              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\Templates\\ApiControllerTemplateWithSingleDto.txt",
+              "RelativeToolTip": "UCY.CodeGenerator.Console\\Templates\\ApiControllerTemplateWithSingleDto.txt",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAkwFYAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-07-17T19:59:26.353Z",
+              "WhenOpened": "2025-07-18T10:15:36.521Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "RegisterDto.txt",
-              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Auth\\Request\\RegisterDto.txt",
-              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Auth\\Request\\RegisterDto.txt",
-              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Auth\\Request\\RegisterDto.txt",
-              "RelativeToolTip": "UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Auth\\Request\\RegisterDto.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-07-17T19:55:26.005Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AuthLoginRequestDto.txt",
-              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Auth\\Request\\AuthLoginRequestDto.txt",
-              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Auth\\Request\\AuthLoginRequestDto.txt",
-              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Auth\\Request\\AuthLoginRequestDto.txt",
-              "RelativeToolTip": "UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Auth\\Request\\AuthLoginRequestDto.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-07-17T19:55:01.604Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "PaginationDto.txt",
-              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Base\\PaginationDto.txt",
-              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Base\\PaginationDto.txt",
-              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Base\\PaginationDto.txt",
-              "RelativeToolTip": "UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Base\\PaginationDto.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-07-17T19:54:26.745Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "TokenService.txt",
-              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Modules\\TokenService.txt",
-              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Modules\\TokenService.txt",
-              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Modules\\TokenService.txt",
-              "RelativeToolTip": "UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Modules\\TokenService.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-07-17T19:53:43.332Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\Program.cs",
-              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\Program.cs",
-              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\Program.cs",
-              "RelativeToolTip": "UCY.CodeGenerator.Console\\Program.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAgwBQAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T13:49:17.284Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ProjectManager.cs",
-              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\ProjectManager.cs",
-              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\NewProject\\ProjectManager.cs",
-              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\ProjectManager.cs",
-              "RelativeToolTip": "UCY.CodeGenerator.Console\\NewProject\\ProjectManager.cs",
-              "ViewState": "AgIAAKUAAAAAAAAAAAD4vz4AAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-22T13:49:24.118Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "config.json",
-              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\config.json",
-              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\config.json",
-              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\config.json",
-              "RelativeToolTip": "UCY.CodeGenerator.Console\\config.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-07-13T20:41:58.808Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
               "Title": "ApiControllerTemplate.txt",
               "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\Templates\\ApiControllerTemplate.txt",
               "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\Templates\\ApiControllerTemplate.txt",
               "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\Templates\\ApiControllerTemplate.txt",
               "RelativeToolTip": "UCY.CodeGenerator.Console\\Templates\\ApiControllerTemplate.txt",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAFYAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-07-13T21:29:00.629Z"
+              "WhenOpened": "2025-07-18T10:15:32.789Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FilterDto.txt",
+              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Base\\FilterDto.txt",
+              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Base\\FilterDto.txt",
+              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Base\\FilterDto.txt",
+              "RelativeToolTip": "UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Base\\FilterDto.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-07-18T10:14:09.488Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "AuthController.txt",
-              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Controllers\\AuthController.txt",
-              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Controllers\\AuthController.txt",
-              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Controllers\\AuthController.txt",
-              "RelativeToolTip": "UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Controllers\\AuthController.txt",
-              "ViewState": "AgIAADAAAAAAAAAAAADwv0EAAAAAAAAAAAAAAA==",
+              "Title": "BaseEntity.txt",
+              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\Model\\Base\\BaseEntity.txt",
+              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\Model\\Base\\BaseEntity.txt",
+              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\Model\\Base\\BaseEntity.txt",
+              "RelativeToolTip": "UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\Model\\Base\\BaseEntity.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-04-22T14:13:16.562Z"
+              "WhenOpened": "2025-07-18T10:13:58.992Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "RoleController.txt",
-              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Controllers\\RoleController.txt",
-              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Controllers\\RoleController.txt",
-              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Controllers\\RoleController.txt",
-              "RelativeToolTip": "UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Controllers\\RoleController.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAkAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "ApplicationUser.txt",
+              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\Model\\Base\\ApplicationUser.txt",
+              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\Model\\Base\\ApplicationUser.txt",
+              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\Model\\Base\\ApplicationUser.txt",
+              "RelativeToolTip": "UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\Model\\Base\\ApplicationUser.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-04-22T14:12:53.806Z"
+              "WhenOpened": "2025-07-18T10:13:54.976Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "UserRoleController.txt",
-              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Controllers\\UserRoleController.txt",
-              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Controllers\\UserRoleController.txt",
-              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Controllers\\UserRoleController.txt",
-              "RelativeToolTip": "UCY.CodeGenerator.Console\\NewProject\\Templates\\API\\Controllers\\UserRoleController.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAkAAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "IService.txt",
+              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\Services\\IService.txt",
+              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\Services\\IService.txt",
+              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\Services\\IService.txt",
+              "RelativeToolTip": "UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\Services\\IService.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-04-22T14:13:22.253Z"
+              "WhenOpened": "2025-07-18T10:13:52.66Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "BaseDto.txt",
+              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Base\\BaseDto.txt",
+              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Base\\BaseDto.txt",
+              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Base\\BaseDto.txt",
+              "RelativeToolTip": "UCY.CodeGenerator.Console\\NewProject\\Templates\\Core\\DTOs\\Base\\BaseDto.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-07-18T10:13:50.271Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ModelToService.cs",
+              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\Generator\\ModelToService.cs",
+              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\Generator\\ModelToService.cs",
+              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\Generator\\ModelToService.cs",
+              "RelativeToolTip": "UCY.CodeGenerator.Console\\Generator\\ModelToService.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAewC8AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-18T08:12:05.735Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\Program.cs",
+              "RelativeDocumentMoniker": "UCY.CodeGenerator.Console\\Program.cs",
+              "ToolTip": "C:\\git\\UCY.CodeGenerator.App\\UCY.CodeGenerator.Console\\Program.cs",
+              "RelativeToolTip": "UCY.CodeGenerator.Console\\Program.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABkAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-18T08:11:28.927Z"
             }
           ]
         }
