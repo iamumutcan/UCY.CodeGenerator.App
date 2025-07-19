@@ -14,3 +14,7 @@
 - Generic filter endpoint (`POST /api/{entity}/filter`)  
 - `FilterDto` + `PaginationDto<T>` support  
 - Auto-generated service & repository methods: `FilterAsync(...)`
+
+## [1.2.0] – 2025-07-19
+### Added
+- Bulk insert support (`POST /api/{entity}/bulk`) via `AddRange`

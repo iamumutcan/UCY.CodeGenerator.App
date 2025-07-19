@@ -37,6 +37,14 @@ namespace {{ProjectName}}{{APILayer}}.Controllers
             var itemsDtos = _mapper.Map<{{ModelName}}Dto>(item);
             return CreateActionResult(CustomResponseDto<{{ModelName}}Dto>.Success(200, itemsDtos));
         }
+        [HttpPost("bulk")]
+        public async Task<IActionResult> AddRange([FromBody] List<{{ModelName}}Dto> itemsDtos)
+        {
+            var items = _mapper.Map<List<{{ModelName}}>>(itemsDtos);
+            var addedItems = await _service.AddRangeAsync(items);
+            var addedItemsDtos = _mapper.Map<List<{{ModelName}}Dto>>(addedItems);
+            return CreateActionResult(CustomResponseDto<List<{{ModelName}}Dto>>.Success(201, addedItemsDtos));
+        }
 
         [HttpPost]
         public async Task<IActionResult> Save({{ModelName}}Dto itemDto)
