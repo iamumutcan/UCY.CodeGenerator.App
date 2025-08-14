@@ -17,7 +17,7 @@ using System.Text;
 namespace {{ProjectName}}{{APILayer}}.Controllers;
 
 
-public class AuthController : Controller
+public class AuthController : CustomBaseController
 {
     private readonly UserManager<ApplicationUser> _userManager; // IdentityUser kullan�l�yor
     private readonly SignInManager<ApplicationUser> _signInManager;
@@ -45,11 +45,14 @@ public class AuthController : Controller
 
         if (result.Succeeded)
         {
-            return Ok("Registration successful");
 
+            return CreateActionResult(CustomResponseDto<object>.Success(201, new
+            {
+                email = user.Email
+            }));
         }
-
-        return BadRequest(result.Errors);
+        var errors = result.Errors.Select(e => e.Description).ToList();
+        return CreateActionResult(CustomResponseDto<NoContentDto>.Fail(400, errors));
     }
 
     [HttpPost("login")]

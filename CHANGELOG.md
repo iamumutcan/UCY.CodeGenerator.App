@@ -18,3 +18,8 @@
 ## [1.2.0] – 2025-07-19
 ### Added
 - Bulk insert support (`POST /api/{entity}/bulk`) via `AddRange`
+
+## [1.2.1] – 2025-08-14
+### Fixed
+- AuthController register endpoint now returns corporate-standard response object  
+  (`201 Created` with unified `CustomResponseDto` payload instead of plain string / `BadRequest`)
