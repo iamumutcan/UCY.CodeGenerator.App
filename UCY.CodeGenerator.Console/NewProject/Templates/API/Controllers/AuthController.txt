@@ -23,7 +23,7 @@ public class AuthController : CustomBaseController
     private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly TokenService _tokenService;
 
-    public AuthController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, TokenService tokenService)
+    public AuthController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, TokenService tokenService, ILogger<AuthController> logger) : base(logger)
     {
         _userManager = userManager;
         _signInManager = signInManager;

@@ -14,10 +14,19 @@ public static class UseCustomExceptionHandler
         {
             config.Run(async context =>
             {
+                var logger = context.RequestServices
+                    .GetRequiredService<ILoggerFactory>()
+                    .CreateLogger("GlobalExceptionHandler");
+
                 context.Response.ContentType = "application/json";
 
                 var exceptionFeature = context.Features.Get<IExceptionHandlerFeature>();
                 var exception = exceptionFeature?.Error;
+
+                if (exception != null)
+                {
+                    logger.LogError(exception, "Unhandled exception occurred: {Message}", exception.Message);
+                }
 
                 var statusCode = exception switch
                 {
@@ -29,10 +38,10 @@ public static class UseCustomExceptionHandler
 
                 var response = exception switch
                 {
-                    AuthorizationException => CustomResponseDto<NoContentDto>.Fail(statusCode, "Yetkilendirme hatasý: " + exception.Message),
-                    AuthenticationException => CustomResponseDto<NoContentDto>.Fail(statusCode, "Kimlik doðrulama hatasý: " + exception.Message),
-                    ClientSideException => CustomResponseDto<NoContentDto>.Fail(statusCode, "Ýstemci hatasý: " + exception.Message),
-                    _ => CustomResponseDto<NoContentDto>.Fail(statusCode, "Sunucu hatasý: " + exception?.Message)
+                    AuthorizationException => CustomResponseDto<NoContentDto>.Fail(statusCode, "Authorization error: " + exception.Message),
+                    AuthenticationException => CustomResponseDto<NoContentDto>.Fail(statusCode, "Authentication error: " + exception.Message),
+                    ClientSideException => CustomResponseDto<NoContentDto>.Fail(statusCode, "Client error: " + exception.Message),
+                    _ => CustomResponseDto<NoContentDto>.Fail(statusCode, "Server error: " + exception?.Message)
                 };
 
                 context.Response.StatusCode = statusCode;
@@ -40,4 +49,5 @@ public static class UseCustomExceptionHandler
             });
         });
     }
+
 }

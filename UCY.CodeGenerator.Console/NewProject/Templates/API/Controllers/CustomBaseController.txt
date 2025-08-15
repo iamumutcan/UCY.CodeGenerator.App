@@ -7,6 +7,13 @@ namespace {{ProjectName}}{{APILayer}}.Controllers
     [ApiController]
     public class CustomBaseController : ControllerBase
     {
+        protected readonly ILogger Logger;
+
+        public CustomBaseController(ILogger logger)
+        {
+            Logger = logger;
+        }
+
 
         [NonAction]
         public IActionResult CreateActionResult<T>(CustomResponseDto<T> response)

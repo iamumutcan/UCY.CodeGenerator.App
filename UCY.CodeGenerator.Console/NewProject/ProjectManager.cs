@@ -129,6 +129,8 @@ public class ProjectManager
     <PackageReference Include=""Microsoft.IdentityModel.Tokens"" Version=""8.0.2"" />
     <PackageReference Include=""Swashbuckle.AspNetCore"" Version=""6.7.1"" />
     <PackageReference Include=""System.IdentityModel.Tokens.Jwt"" Version=""8.0.2"" />
+    <PackageReference Include=""Serilog.AspNetCore"" Version=""9.0.0"" />
+    <PackageReference Include=""Serilog.Sinks.File"" Version=""7.0.0"" />
     <ProjectReference Include=""..\{_config.ProjectName}{_config.Caching}\{_config.ProjectName}{_config.Caching}.csproj"" />
   </ItemGroup>";
     }

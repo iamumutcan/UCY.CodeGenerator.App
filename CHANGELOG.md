@@ -23,3 +23,10 @@
 ### Fixed
 - AuthController register endpoint now returns corporate-standard response object  
   (`201 Created` with unified `CustomResponseDto` payload instead of plain string / `BadRequest`)
+
+## [1.3.0] – 2025-08-15
+### Added
+- Serilog structured logging integration  
+  - Console and rolling-file sinks  
+  - All controllers derived from `CustomBaseController` can receive logging with a single line  
+  - Auth events (register, login, errors) now emit enriched log entries

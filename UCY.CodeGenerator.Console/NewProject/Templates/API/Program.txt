@@ -15,14 +15,32 @@ using {{ProjectName}}{{ServiceLayer}}.Mapping;
 using {{ProjectName}}{{ServiceLayer}}.Validations;
 using System.Reflection;
 using System.Text;
+using Serilog;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
+    .MinimumLevel.Override("System", Serilog.Events.LogEventLevel.Warning)
+    .WriteTo.Logger(lc => lc
+        .Filter.ByExcluding(le => le.Level == Serilog.Events.LogEventLevel.Error || le.Level == Serilog.Events.LogEventLevel.Fatal)
+        .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day))
+    .WriteTo.Logger(lc => lc
+        .Filter.ByIncludingOnly(le => le.Level == Serilog.Events.LogEventLevel.Error || le.Level == Serilog.Events.LogEventLevel.Fatal)
+        .WriteTo.File(
+            path: "Logs/errors-log.txt",
+            rollingInterval: RollingInterval.Day,
+            outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}"
+        ))
+    .WriteTo.Console().Enrich.FromLogContext().CreateLogger();
+builder.Host.UseSerilog();
 
-// Add Identity <- Burada yalnýzca bir kez tanýmlýyoruz.
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-    .AddEntityFrameworkStores<AppDbContext>()
-    .AddDefaultTokenProviders();
+
+
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
 builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 builder.Services.AddScoped<TokenService>();
@@ -62,17 +80,15 @@ builder.Services.AddMemoryCache();
 
 builder.Services.AddScoped(typeof(NotFoundFilter<>));
 builder.Services.AddAutoMapper(typeof(MapProfile));
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseInMemoryDatabase("InMemoryDb"));
+builder.Services.AddDbContext<AppDbContext>(options =>options.UseInMemoryDatabase("InMemoryDb"));
 
 /*
-
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
-x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), option =>
-{
-    option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
-});
+    x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), option =>
+    {
+        option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
+    });
 });
 */
 
